@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@planetscale/database": "1.13.0",
+    "mysql2": "3.7.0",
     "drizzle-orm": "0.29.3"
   },
   "devDependencies": {

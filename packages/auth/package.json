@@ -5,7 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./env": "./env.js"
+    "./env": "./env.mjs"
   },
   "license": "MIT",
   "scripts": {
@@ -16,10 +16,11 @@
   },
   "dependencies": {
     "@acme/db": "workspace:*",
-    "@auth/drizzle-adapter": "0.3.14",
+    "lucia": "beta",
+    "oslo": "0.27.0",
+    "arctic": "0.10.3",
     "@t3-oss/env-nextjs": "0.7.1",
     "next": "14.0.4",
-    "next-auth": "5.0.0-beta.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zod": "3.22.4"

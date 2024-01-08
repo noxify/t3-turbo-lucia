@@ -6,11 +6,6 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),
-    VERCEL_ENV: z.enum(["development", "preview", "production"]).optional(),
-    VERCEL_URL: z
-      .string()
-      .optional()
-      .transform((v) => (v ? `https://${v}` : undefined)),
     PORT: z.coerce.number().default(3000),
   },
   /**
@@ -39,9 +34,6 @@ export const env = createEnv({
     DB_PASSWORD: process.env.DB_PASSWORD,
     DB_USERNAME: process.env.DB_USERNAME,
     PORT: process.env.PORT,
-    VERCEL_URL: process.env.VERCEL_URL,
-
-    // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   skipValidation:
     !!process.env.CI ||

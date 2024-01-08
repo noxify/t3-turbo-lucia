@@ -1,14 +1,12 @@
 import { Suspense } from "react";
+import { api } from "@/trpc/server";
 
-import { api } from "~/trpc/server";
 import { AuthShowcase } from "./_components/auth-showcase";
 import {
   CreatePostForm,
   PostCardSkeleton,
   PostList,
 } from "./_components/posts";
-
-export const runtime = "edge";
 
 export default async function HomePage() {
   // You don't need to fetch these here, just showing different usages

@@ -10,7 +10,6 @@ export const env = createEnv({
         ? z.string().min(1)
         : z.string().min(1).optional(),
     AUTH_URL: z.string().url(),
-
   },
   client: {},
   runtimeEnv: {

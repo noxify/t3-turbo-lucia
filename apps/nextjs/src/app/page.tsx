@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { api } from "@/trpc/server";
 
+import { api } from "@/trpc/server";
 import { AuthShowcase } from "./_components/auth-showcase";
 import {
   CreatePostForm,

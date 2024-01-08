@@ -16,16 +16,20 @@
     "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
     "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
     "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-    "lint:ws": "pnpm dlx sherif@latest",
+    "lint:ws": "sherif",
+    "lint:ws:fix": "sherif --fix",
     "postinstall": "pnpm lint:ws",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "deps:check": "pnpm outdated -r",
+    "deps:update": "pnpm update -i -L -r"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:^0.1.0",
-    "@turbo/gen": "^1.11.3",
-    "prettier": "^3.1.1",
-    "turbo": "^1.11.3",
-    "typescript": "^5.3.3"
+    "@acme/prettier-config": "workspace:*",
+    "@turbo/gen": "1.11.3",
+    "prettier": "3.1.1",
+    "turbo": "1.11.3",
+    "typescript": "5.3.3",
+    "sherif": "0.7.0"
   },
   "prettier": "@acme/prettier-config"
 }

@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
-import { cache } from "react";
-import { headers } from "next/headers";
+import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
@@ -13,12 +11,16 @@ import { TRPCReactProvider } from "@/trpc/react";
 import "@/app/globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
-  title: "T3 Turbo - Lucia",
-  description: "Simple monorepo with shared backend for web apps",
+  title: "Create T3 Turbo",
+  description: "Simple monorepo with shared backend for web & mobile apps",
 };
 
-const getHeaders = cache(async () => headers());
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
@@ -31,9 +33,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TRPCReactProvider headersPromise={getHeaders()}>
-            {props.children}
-          </TRPCReactProvider>
+          <TRPCReactProvider>{props.children}</TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
             <ThemeToggle />
           </div>

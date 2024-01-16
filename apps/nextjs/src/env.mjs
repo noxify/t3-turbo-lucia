@@ -17,6 +17,8 @@ export const env = createEnv({
     DB_NAME: z.string(),
     DB_PASSWORD: z.string(),
     DB_USERNAME: z.string(),
+    AUTH_GITHUB_ID: z.string().min(1),
+    AUTH_GITHUB_SECRET: z.string().min(1),
   },
   /**
    * Specify your client-side environment variables schema here.
@@ -34,6 +36,8 @@ export const env = createEnv({
     DB_PASSWORD: process.env.DB_PASSWORD,
     DB_USERNAME: process.env.DB_USERNAME,
     PORT: process.env.PORT,
+    AUTH_GITHUB_ID: process.env.AUTH_GITHUB_ID,
+    AUTH_GITHUB_SECRET: process.env.AUTH_GITHUB_SECRET,
   },
   skipValidation:
     !!process.env.CI ||

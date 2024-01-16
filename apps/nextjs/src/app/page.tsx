@@ -1,15 +1,16 @@
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
-import { api } from "@/trpc/server";
+// import { api } from "@/trpc/server";
 import { AuthShowcase } from "./_components/auth-showcase";
-import {
-  CreatePostForm,
-  PostCardSkeleton,
-  PostList,
-} from "./_components/posts";
+
+// import {
+//   CreatePostForm,
+//   PostCardSkeleton,
+//   PostList,
+// } from "./_components/posts";
 
 export default async function HomePage() {
-  const posts = api.post.all();
+  // const posts = api.post.all();
 
   return (
     <main className="container h-screen py-16">
@@ -19,7 +20,7 @@ export default async function HomePage() {
         </h1>
         <AuthShowcase />
 
-        <CreatePostForm />
+        {/* <CreatePostForm />
         <div className="w-full max-w-2xl overflow-y-scroll">
           <Suspense
             fallback={
@@ -32,7 +33,7 @@ export default async function HomePage() {
           >
             <PostList posts={posts} />
           </Suspense>
-        </div>
+        </div> */}
       </div>
     </main>
   );

@@ -5,7 +5,9 @@ import "@acme/auth/env";
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-
+  experimental: {
+    serverComponentsExternalPackages: ["oslo"],
+  },
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@acme/api",

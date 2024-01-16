@@ -1,22 +1,16 @@
-import { auth, signIn, signOut } from "@acme/auth";
+import Link from "next/link";
+
+import { validateRequest } from "@acme/auth";
 import { Button } from "@acme/ui/button";
 
 export async function AuthShowcase() {
-  const session = await auth();
+  const session = await validateRequest();
 
-  if (!session) {
+  if (!session.user) {
     return (
-      <form>
-        <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
-            await signIn("discord");
-          }}
-        >
-          Sign in with Discord
-        </Button>
-      </form>
+      <Button size="lg" asChild>
+        <Link href={"/auth/github"}>Sign in with Github</Link>
+      </Button>
     );
   }
 
@@ -25,18 +19,9 @@ export async function AuthShowcase() {
       <p className="text-center text-2xl">
         {session && <span>Logged in as {session.user.name}</span>}
       </p>
-
-      <form>
-        <Button
-          size="lg"
-          formAction={async () => {
-            "use server";
-            await signOut();
-          }}
-        >
-          Sign out
-        </Button>
-      </form>
+      <Button size="lg" asChild>
+        <Link href={"/auth/logout"}>Sign out</Link>
+      </Button>
     </div>
   );
 }

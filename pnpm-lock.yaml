@@ -172,6 +172,9 @@ importers:
       '@acme/db':
         specifier: workspace:*
         version: link:../db
+      '@lucia-auth/adapter-drizzle':
+        specifier: beta
+        version: 1.0.0-beta.5(lucia@3.0.0-beta.14)
       '@t3-oss/env-nextjs':
         specifier: 0.7.3
         version: 0.7.3(typescript@5.3.3)(zod@3.22.4)
@@ -206,6 +209,9 @@ importers:
       '@acme/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
+      '@octokit/types':
+        specifier: 12.4.0
+        version: 12.4.0
       eslint:
         specifier: 8.56.0
         version: 8.56.0
@@ -1336,6 +1342,14 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
+  /@lucia-auth/adapter-drizzle@1.0.0-beta.5(lucia@3.0.0-beta.14):
+    resolution: {integrity: sha512-gYbjvFzEa8ot2W/t61GJHtDZdyVzi9ihNTISHQBSnppiFomINleGd8dJEHuCs1vlCOy6PgFdZZLnXE8XpomD0g==}
+    peerDependencies:
+      lucia: 3.0.0-beta.14
+    dependencies:
+      lucia: 3.0.0-beta.14(quill-delta@5.1.0)(rxjs@7.8.1)(tslib@2.6.2)
+    dev: false
+
   /@next/env@14.0.4:
     resolution: {integrity: sha512-irQnbMLbUNQpP1wcE5NstJtbuA/69kRfzBrpAD7Gsn8zm/CY6YQYc3HQBz8QPxwISG26tIm5afvvVbu508oBeQ==}
     dev: false
@@ -1760,6 +1774,16 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+
+  /@octokit/openapi-types@19.1.0:
+    resolution: {integrity: sha512-6G+ywGClliGQwRsjvqVYpklIfa7oRPA0vyhPQG/1Feh+B+wU0vGH1JiJ5T25d3g1JZYBHzR2qefLi9x8Gt+cpw==}
+    dev: true
+
+  /@octokit/types@12.4.0:
+    resolution: {integrity: sha512-FLWs/AvZllw/AGVs+nJ+ELCDZZJk+kY0zMen118xhL2zD0s1etIUHm1odgjP7epxYU1ln7SZxEUWYop5bhsdgQ==}
+    dependencies:
+      '@octokit/openapi-types': 19.1.0
+    dev: true
 
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}

@@ -1,13 +1,11 @@
-import { relations, sql } from "drizzle-orm";
-import {
-  datetime,
-  index,
-  int,
-  primaryKey,
-  text,
-  timestamp,
-  varchar,
-} from "drizzle-orm/mysql-core";
+/**
+ * Source:
+ * - https://v3.lucia-auth.com/database/drizzle
+ * - https://v3.lucia-auth.com/guides/oauth/multiple-providers
+ */
+
+import { relations } from "drizzle-orm";
+import { datetime, index, primaryKey, varchar } from "drizzle-orm/mysql-core";
 
 import { mySqlTable } from "./_table";
 
@@ -34,7 +32,6 @@ export const sessions = mySqlTable("session", {
 export const accounts = mySqlTable(
   "account",
   {
-    provider: varchar("provider", { length: 255 }).notNull(),
     providerId: varchar("provider_id", { length: 255 }).notNull(),
     providerUserId: varchar("provider_user_id", { length: 255 }).notNull(),
     userId: varchar("user_id", {
@@ -45,7 +42,7 @@ export const accounts = mySqlTable(
   },
   (account) => ({
     compoundKey: primaryKey({
-      columns: [account.provider, account.providerId],
+      columns: [account.providerId, account.providerUserId],
     }),
     userIdIdx: index("userId_idx").on(account.userId),
   }),

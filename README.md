@@ -2,11 +2,7 @@
 
 ## Installation
 
-There are two ways of initializing an app using the `create-t3-turbo` starter. You can either use this repository as a template:
-
-![use-as-template](https://github.com/t3-oss/create-t3-turbo/assets/51714798/bb6c2e5d-d8b6-416e-aeb3-b3e50e2ca994)
-
-or use Turbo's CLI to init your project (use PNPM as package manager):
+Use Turbo's CLI to init your project (use PNPM as package manager):
 
 ```bash
 npx create-turbo@latest -e https://github.com/noxify/t3-turbo-lucia
@@ -49,7 +45,11 @@ tooling
 
 ## Quick Start
 
-To get it running, follow the steps below:
+To get it running, follow the steps below.
+
+The db is currently configured for `mysql`.
+
+Feel free to change.
 
 ### 1. Setup dependencies
 
@@ -64,6 +64,16 @@ cp .env.example .env
 # Push the Drizzle schema to the database
 pnpm db:push
 ```
+
+## Some notes
+
+- Github Auth is working incl. additional api call to get the user email ( inspired by authjs ;) )
+- Logout seems to be buggy - maybe it must be called as server action instead a direct call ( `/auth/logout` )
+  - Sometimes you get redirected, sometimes...not
+- app feels a bit slow in dev mode - Possible that this is a local hardware problem ( 2017 MBP i7 )
+  - Not sure if safari could be a problem, too
+  - anyway.. it's working :D
+- trpc isn't working currently - deactivated it for now to make my life easier :D
 
 ## References
 

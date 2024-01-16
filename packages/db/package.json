@@ -16,17 +16,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "mysql2": "3.7.0",
-    "drizzle-orm": "0.29.3"
+    "drizzle-orm": "0.29.3",
+    "mysql2": "3.7.0"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "dotenv-cli": "7.3.0",
-    "drizzle-kit": "0.20.10",
+    "drizzle-kit": "0.20.13",
     "eslint": "8.56.0",
-    "prettier": "3.1.1",
+    "prettier": "3.2.2",
     "typescript": "5.3.3"
   },
   "eslintConfig": {

@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { validateRequest } from "@acme/auth";
+import { auth } from "@acme/auth";
 import { Button } from "@acme/ui/button";
 
 export async function AuthShowcase() {
-  const session = await validateRequest();
+  const session = await auth();
 
   if (!session.user) {
     return (

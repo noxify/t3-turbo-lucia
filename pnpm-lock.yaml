@@ -212,6 +212,9 @@ importers:
       '@octokit/types':
         specifier: 12.4.0
         version: 12.4.0
+      discord-api-types:
+        specifier: 0.37.67
+        version: 0.37.67
       eslint:
         specifier: 8.56.0
         version: 8.56.0
@@ -3374,6 +3377,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-type: 4.0.0
+
+  /discord-api-types@0.37.67:
+    resolution: {integrity: sha512-4HEzUEmwGPXWJdVhGZ/K+9eWs8kurdn5r/I8qD3/0hb14I0MZvx8K/JOyLhKLgcR4/8/jcr6Xej820BNgNXN7A==}
+    dev: true
 
   /dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}

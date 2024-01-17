@@ -2,15 +2,15 @@ import { cookies } from "next/headers";
 import { OAuth2RequestError } from "arctic";
 import { generateId } from "lucia";
 
-import type { GithubUser, GithubUserEmail } from "@acme/auth";
-import { github, lucia } from "@acme/auth";
+import type { DiscordUser } from "@acme/auth";
+import { discord, lucia } from "@acme/auth";
 import { db, schema } from "@acme/db";
 
 export async function GET(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
-  const storedState = cookies().get("github_oauth_state")?.value ?? null;
+  const storedState = cookies().get("discord_oauth_state")?.value ?? null;
   if (!code || !state || !storedState || state !== storedState) {
     return new Response(null, {
       status: 400,
@@ -18,16 +18,17 @@ export async function GET(request: Request): Promise<Response> {
   }
 
   try {
-    const tokens = await github.validateAuthorizationCode(code);
+    const tokens = await discord.validateAuthorizationCode(code);
 
-    const githubUserResponse = await fetch("https://api.github.com/user", {
-      headers: {
-        Authorization: `Bearer ${tokens.accessToken}`,
+    const discordUserResponse = await fetch(
+      "https://discord.com/api/users/@me",
+      {
+        headers: {
+          Authorization: `Bearer ${tokens.accessToken}`,
+        },
       },
-    });
-    const githubUser =
-      (await githubUserResponse.json()) as GithubUser["response"]["data"];
-
+    );
+    const discordUser = (await discordUserResponse.json()) as DiscordUser;
     const existingUser = await db.query.accounts.findFirst({
       columns: {
         userId: true,
@@ -35,11 +36,11 @@ export async function GET(request: Request): Promise<Response> {
 
       where: (accounts, { and, eq }) => {
         return and(
-          eq(accounts.providerId, "github"),
+          eq(accounts.providerId, "discord"),
           // since the id in github is a number, we have to convert it
           // to a string, because our accounts tables expects a string
           // easy peacy, lemon squeezy
-          eq(accounts.providerUserId, githubUser.id.toString()),
+          eq(accounts.providerUserId, discordUser.id),
         );
       },
     });
@@ -61,7 +62,7 @@ export async function GET(request: Request): Promise<Response> {
     }
 
     let userId = generateId(15);
-    const userEmail = githubUser.email!;
+    const userEmail = discordUser.email!;
 
     await db.transaction(async (tx) => {
       const existingUser = await tx.query.users.findFirst({
@@ -76,7 +77,7 @@ export async function GET(request: Request): Promise<Response> {
       if (!existingUser) {
         await tx.insert(schema.users).values({
           id: userId,
-          name: githubUser.login,
+          name: discordUser.username,
           email: userEmail,
         });
       } else {
@@ -84,8 +85,8 @@ export async function GET(request: Request): Promise<Response> {
       }
 
       await tx.insert(schema.accounts).values({
-        providerId: "github",
-        providerUserId: githubUser.id.toString(),
+        providerId: "discord",
+        providerUserId: discordUser.id,
         userId,
       });
     });

@@ -1,9 +1,10 @@
 import type { Endpoints } from "@octokit/types";
+import type { DiscordTokens } from "arctic";
 import type { Session, User } from "lucia";
 import { cache } from "react";
 import { cookies } from "next/headers";
 import { DrizzleMySQLAdapter } from "@lucia-auth/adapter-drizzle";
-import { GitHub } from "arctic";
+import { Discord, GitHub } from "arctic";
 import { Lucia } from "lucia";
 
 import { db, schema } from "@acme/db";
@@ -72,5 +73,15 @@ export const auth = cache(async (): Promise<AuthResponse> => {
 
 export const github = new GitHub(env.AUTH_GITHUB_ID, env.AUTH_GITHUB_SECRET);
 
+export const discord = new Discord(
+  env.AUTH_DISCORD_ID,
+  env.AUTH_DISCORD_SECRET,
+  "http://localhost:3000/auth/discord/callback",
+);
+
+export type { DiscordTokens };
+
 export type GithubUser = Endpoints["GET /user"];
 export type GithubUserEmail = Endpoints["GET /user/emails"];
+
+export type { APIUser as DiscordUser } from "discord-api-types/v10";

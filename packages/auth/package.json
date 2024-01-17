@@ -31,6 +31,7 @@
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@octokit/types": "12.4.0",
+    "discord-api-types": "0.37.67",
     "eslint": "8.56.0",
     "prettier": "3.2.4",
     "typescript": "5.3.3"

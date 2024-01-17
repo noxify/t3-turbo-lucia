@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@acme/db": "workspace:*",
-    "@t3-oss/env-nextjs": "0.7.3",
-    "arctic": "0.10.4",
-    "lucia": "beta",
     "@lucia-auth/adapter-drizzle": "beta",
+    "@t3-oss/env-nextjs": "0.7.3",
+    "arctic": "0.10.5",
+    "lucia": "beta",
     "next": "14.0.4",
     "oslo": "0.27.1",
     "react": "18.2.0",
@@ -27,12 +27,12 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "@octokit/types": "12.4.0",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
+    "@octokit/types": "12.4.0",
     "eslint": "8.56.0",
-    "prettier": "3.2.2",
+    "prettier": "3.2.4",
     "typescript": "5.3.3"
   },
   "eslintConfig": {

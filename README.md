@@ -67,13 +67,9 @@ pnpm db:push
 
 ## Some notes
 
-- Github Auth is working incl. additional api call to get the user email ( inspired by authjs ;) )
-- Logout seems to be buggy - maybe it must be called as server action instead a direct call ( `/auth/logout` )
-  - Sometimes you get redirected, sometimes...not
 - app feels a bit slow in dev mode - Possible that this is a local hardware problem ( 2017 MBP i7 )
   - Not sure if safari could be a problem, too
   - anyway.. it's working :D
-- trpc isn't working currently - deactivated it for now to make my life easier :D
 
 ## References
 

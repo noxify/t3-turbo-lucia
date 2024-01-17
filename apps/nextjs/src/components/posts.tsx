@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { use } from "react";
+import { use } from "react"
 
-import type { RouterOutputs } from "@acme/api";
-import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
+import type { RouterOutputs } from "@acme/api"
+import { cn } from "@acme/ui"
+import { Button } from "@acme/ui/button"
 import {
   Form,
   FormControl,
@@ -12,12 +12,12 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from "@acme/ui/form";
-import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/toast";
-import { CreatePostSchema } from "@acme/validators";
+} from "@acme/ui/form"
+import { Input } from "@acme/ui/input"
+import { toast } from "@acme/ui/toast"
+import { CreatePostSchema } from "@acme/validators"
 
-import { api } from "@/trpc/react";
+import { api } from "@/trpc/react"
 
 export function CreatePostForm() {
   const form = useForm({
@@ -26,29 +26,29 @@ export function CreatePostForm() {
       content: "",
       title: "",
     },
-  });
+  })
 
-  const utils = api.useUtils();
+  const utils = api.useUtils()
   const createPost = api.post.create.useMutation({
     onSuccess: async () => {
-      form.reset();
-      await utils.post.invalidate();
+      form.reset()
+      await utils.post.invalidate()
     },
     onError: (err) => {
       toast.error(
         err?.data?.code === "UNAUTHORIZED"
           ? "You must be logged in to post"
           : "Failed to create post",
-      );
+      )
     },
-  });
+  })
 
   return (
     <Form {...form}>
       <form
         className="flex w-full max-w-2xl flex-col gap-4"
         onSubmit={form.handleSubmit(async (data) => {
-          createPost.mutate(data);
+          createPost.mutate(data)
         })}
       >
         <FormField
@@ -78,17 +78,17 @@ export function CreatePostForm() {
         <Button>Create</Button>
       </form>
     </Form>
-  );
+  )
 }
 
 export function PostList(props: {
-  posts: Promise<RouterOutputs["post"]["all"]>;
+  posts: Promise<RouterOutputs["post"]["all"]>
 }) {
   // TODO: Make `useSuspenseQuery` work without having to pass a promise from RSC
-  const initialData = use(props.posts);
+  const initialData = use(props.posts)
   const { data: posts } = api.post.all.useQuery(undefined, {
     initialData,
-  });
+  })
 
   if (posts.length === 0) {
     return (
@@ -101,34 +101,34 @@ export function PostList(props: {
           <p className="text-2xl font-bold text-white">No posts yet</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <div className="flex w-full flex-col gap-4">
       {posts.map((p) => {
-        return <PostCard key={p.id} post={p} />;
+        return <PostCard key={p.id} post={p} />
       })}
     </div>
-  );
+  )
 }
 
 export function PostCard(props: {
-  post: RouterOutputs["post"]["all"][number];
+  post: RouterOutputs["post"]["all"][number]
 }) {
-  const utils = api.useUtils();
+  const utils = api.useUtils()
   const deletePost = api.post.delete.useMutation({
     onSuccess: async () => {
-      await utils.post.invalidate();
+      await utils.post.invalidate()
     },
     onError: (err) => {
       toast.error(
         err?.data?.code === "UNAUTHORIZED"
           ? "You must be logged in to delete a post"
           : "Failed to delete post",
-      );
+      )
     },
-  });
+  })
 
   return (
     <div className="flex flex-row rounded-lg bg-muted p-4">
@@ -146,11 +146,11 @@ export function PostCard(props: {
         </Button>
       </div>
     </div>
-  );
+  )
 }
 
 export function PostCardSkeleton(props: { pulse?: boolean }) {
-  const { pulse = true } = props;
+  const { pulse = true } = props
   return (
     <div className="flex flex-row rounded-lg bg-muted p-4">
       <div className="flex-grow">
@@ -172,5 +172,5 @@ export function PostCardSkeleton(props: { pulse?: boolean }) {
         </p>
       </div>
     </div>
-  );
+  )
 }

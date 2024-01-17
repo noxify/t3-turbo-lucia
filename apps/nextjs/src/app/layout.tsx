@@ -1,26 +1,26 @@
-import type { Metadata, Viewport } from "next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import type { Metadata, Viewport } from "next"
+import { GeistMono } from "geist/font/mono"
+import { GeistSans } from "geist/font/sans"
 
-import { cn } from "@acme/ui";
-import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
-import { Toaster } from "@acme/ui/toast";
+import { cn } from "@acme/ui"
+import { ThemeProvider, ThemeToggle } from "@acme/ui/theme"
+import { Toaster } from "@acme/ui/toast"
 
-import { TRPCReactProvider } from "@/trpc/react";
+import { TRPCReactProvider } from "@/trpc/react"
 
-import "@/app/globals.css";
+import "@/app/globals.css"
 
 export const metadata: Metadata = {
   title: "Create T3 Turbo",
   description: "Simple monorepo with shared backend for web & mobile apps",
-};
+}
 
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-};
+}
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
@@ -41,5 +41,5 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 // Importing env files here to validate on build
-import "./src/env.mjs";
-import "@acme/auth/env";
+import "./src/env.mjs"
+import "@acme/auth/env"
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -20,6 +20,6 @@ const config = {
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
-};
+}
 
-export default config;
+export default config

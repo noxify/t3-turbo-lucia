@@ -1,11 +1,11 @@
-import { Suspense } from "react";
+import { Suspense } from "react"
 
-import { AuthShowcase } from "@/components/auth-showcase";
-import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts";
-import { api } from "@/trpc/server";
+import { AuthShowcase } from "@/components/auth-showcase"
+import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts"
+import { api } from "@/trpc/server"
 
 export default async function HomePage() {
-  const posts = api.post.all();
+  const posts = api.post.all()
 
   return (
     <main className="container h-screen py-16">
@@ -31,5 +31,5 @@ export default async function HomePage() {
         </div>
       </div>
     </main>
-  );
+  )
 }

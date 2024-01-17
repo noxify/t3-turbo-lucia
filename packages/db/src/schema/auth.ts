@@ -4,10 +4,10 @@
  * - https://v3.lucia-auth.com/guides/oauth/multiple-providers
  */
 
-import { relations } from "drizzle-orm";
-import { datetime, index, primaryKey, varchar } from "drizzle-orm/mysql-core";
+import { relations } from "drizzle-orm"
+import { datetime, index, primaryKey, varchar } from "drizzle-orm/mysql-core"
 
-import { mySqlTable } from "./_table";
+import { mySqlTable } from "./_table"
 
 export const users = mySqlTable("user", {
   id: varchar("id", {
@@ -15,7 +15,7 @@ export const users = mySqlTable("user", {
   }).primaryKey(),
   email: varchar("email", { length: 255 }).notNull().unique(),
   name: varchar("name", { length: 255 }),
-});
+})
 
 export const sessions = mySqlTable("session", {
   id: varchar("id", {
@@ -27,7 +27,7 @@ export const sessions = mySqlTable("session", {
     .notNull()
     .references(() => users.id),
   expiresAt: datetime("expires_at").notNull(),
-});
+})
 
 export const accounts = mySqlTable(
   "account",
@@ -46,15 +46,15 @@ export const accounts = mySqlTable(
     }),
     userIdIdx: index("userId_idx").on(account.userId),
   }),
-);
+)
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   user: one(users, {
     fields: [sessions.userId],
     references: [users.id],
   }),
-}));
+}))
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
-}));
+}))

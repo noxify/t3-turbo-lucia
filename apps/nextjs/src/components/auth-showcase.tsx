@@ -1,12 +1,12 @@
-import Link from "next/link";
+import Link from "next/link"
 
-import { auth } from "@acme/auth";
-import { Button } from "@acme/ui/button";
+import { auth } from "@acme/auth"
+import { Button } from "@acme/ui/button"
 
-import { logoutAction } from "@/actions/logout";
+import { logoutAction } from "@/actions/logout"
 
 export async function AuthShowcase() {
-  const session = await auth();
+  const session = await auth()
 
   if (!session.user) {
     return (
@@ -18,7 +18,7 @@ export async function AuthShowcase() {
           <Link href={"/api/auth/discord/login"}>Sign in with Discord</Link>
         </Button>
       </div>
-    );
+    )
   }
 
   return (
@@ -30,5 +30,5 @@ export async function AuthShowcase() {
         <Button size="lg">Sign out</Button>
       </form>
     </div>
-  );
+  )
 }

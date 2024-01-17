@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from "@t3-oss/env-nextjs"
+import { z } from "zod"
 
 export const env = createEnv({
   shared: {
@@ -47,4 +47,4 @@ export const env = createEnv({
     !!process.env.CI ||
     !!process.env.SKIP_ENV_VALIDATION ||
     process.env.npm_lifecycle_event === "lint",
-});
+})

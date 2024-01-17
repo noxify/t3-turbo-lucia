@@ -1,7 +1,7 @@
-import type { Config } from "drizzle-kit";
-import * as dotenv from "dotenv";
+import type { Config } from "drizzle-kit"
+import * as dotenv from "dotenv"
 
-dotenv.config({ path: "../../.env" });
+dotenv.config({ path: "../../.env" })
 
 const uri = [
   "mysql://",
@@ -12,11 +12,11 @@ const uri = [
   process.env.DB_HOST,
   ":3306/",
   process.env.DB_NAME,
-].join("");
+].join("")
 
 export default {
   schema: "./src/schema",
   driver: "mysql2",
   dbCredentials: { uri },
   tablesFilter: ["t3lucia_*"],
-} satisfies Config;
+} satisfies Config

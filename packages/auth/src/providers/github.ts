@@ -1,29 +1,29 @@
-import type { Endpoints } from "@octokit/types";
-import { GitHub } from "arctic";
-import { generateId } from "lucia";
+import type { Endpoints } from "@octokit/types"
+import { GitHub } from "arctic"
+import { generateId } from "lucia"
 
-import { db, schema } from "@acme/db";
+import { db, schema } from "@acme/db"
 
-import { env } from "../../env.mjs";
+import { env } from "../../env.mjs"
 
-const github = new GitHub(env.AUTH_GITHUB_ID, env.AUTH_GITHUB_SECRET);
+const github = new GitHub(env.AUTH_GITHUB_ID, env.AUTH_GITHUB_SECRET)
 
 export const getAuthorizationUrl = async (state: string) => {
   return await github.createAuthorizationURL(state, {
     scopes: ["read:user", "user:email"],
-  });
-};
+  })
+}
 
 export const handleCallback = async (code: string) => {
-  const tokens = await github.validateAuthorizationCode(code);
+  const tokens = await github.validateAuthorizationCode(code)
 
   const response = await fetch("https://api.github.com/user", {
     headers: {
       Authorization: `Bearer ${tokens.accessToken}`,
     },
-  });
+  })
   const githubUser =
-    (await response.json()) as Endpoints["GET /user"]["response"]["data"];
+    (await response.json()) as Endpoints["GET /user"]["response"]["data"]
 
   const existingAccount = await db.query.accounts.findFirst({
     columns: {
@@ -37,16 +37,16 @@ export const handleCallback = async (code: string) => {
         // to a string, because our accounts tables expects a string
         // easy peacy, lemon squeezy
         eq(accounts.providerUserId, githubUser.id.toString()),
-      );
+      )
     },
-  });
+  })
 
   if (existingAccount) {
-    return existingAccount.userId;
+    return existingAccount.userId
   }
 
-  let userId = generateId(15);
-  let userEmail: string;
+  let userId = generateId(15)
+  let userEmail: string
 
   if (!githubUser.email) {
     // If the user does not have a public email, get another via the GitHub API
@@ -56,14 +56,14 @@ export const handleCallback = async (code: string) => {
         Authorization: `Bearer ${tokens.accessToken}`,
         "User-Agent": "luciaauth",
       },
-    });
+    })
 
     if (res.ok) {
       const emails =
-        (await res.json()) as Endpoints["GET /user/emails"]["response"]["data"];
+        (await res.json()) as Endpoints["GET /user/emails"]["response"]["data"]
 
-      const primaryEmail = emails.find((ele) => ele.primary);
-      userEmail = primaryEmail?.email ?? emails[0]!.email;
+      const primaryEmail = emails.find((ele) => ele.primary)
+      userEmail = primaryEmail?.email ?? emails[0]!.email
     }
   }
 
@@ -73,26 +73,26 @@ export const handleCallback = async (code: string) => {
         id: true,
       },
       where: (users, { and, eq }) => {
-        return and(eq(users.email, userEmail));
+        return and(eq(users.email, userEmail))
       },
-    });
+    })
 
     if (!existingUser) {
       await tx.insert(schema.users).values({
         id: userId,
         name: githubUser.login,
         email: userEmail,
-      });
+      })
     } else {
-      userId = existingUser.id;
+      userId = existingUser.id
     }
 
     await tx.insert(schema.accounts).values({
       providerId: "github",
       providerUserId: githubUser.id.toString(),
       userId,
-    });
-  });
+    })
+  })
 
-  return userId;
-};
+  return userId
+}

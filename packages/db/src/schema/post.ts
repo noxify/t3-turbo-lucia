@@ -1,7 +1,7 @@
-import { sql } from "drizzle-orm";
-import { serial, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { sql } from "drizzle-orm"
+import { serial, timestamp, varchar } from "drizzle-orm/mysql-core"
 
-import { mySqlTable } from "./_table";
+import { mySqlTable } from "./_table"
 
 export const post = mySqlTable("post", {
   id: serial("id").primaryKey(),
@@ -11,4 +11,4 @@ export const post = mySqlTable("post", {
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
   updatedAt: timestamp("updatedAt").onUpdateNow(),
-});
+})

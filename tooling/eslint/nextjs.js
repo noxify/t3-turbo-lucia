@@ -5,6 +5,6 @@ const config = {
     "@next/next/no-html-link-for-pages": "off",
     "@typescript-eslint/require-await": "off",
   },
-};
+}
 
-module.exports = config;
+module.exports = config

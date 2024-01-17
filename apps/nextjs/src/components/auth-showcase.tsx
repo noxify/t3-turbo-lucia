@@ -10,14 +10,14 @@ export async function AuthShowcase() {
 
   if (!session.user) {
     return (
-      <>
+      <div className="grid grid-cols-2 gap-6">
         <Button size="lg" asChild>
-          <Link href={"/auth/github"}>Sign in with Github</Link>
+          <Link href={"/api/auth/github/login"}>Sign in with Github</Link>
         </Button>
         <Button size="lg" asChild className="ml-2">
-          <Link href={"/auth/discord"}>Sign in with Discord</Link>
+          <Link href={"/api/auth/discord/login"}>Sign in with Discord</Link>
         </Button>
-      </>
+      </div>
     );
   }
 

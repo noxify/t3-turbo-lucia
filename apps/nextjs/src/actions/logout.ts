@@ -1,10 +1,11 @@
+"use server";
+
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { auth, lucia } from "@acme/auth";
 
 export async function logoutAction(): Promise<ActionResult> {
-  "use server";
   const { session } = await auth();
   if (!session) {
     return {
@@ -20,7 +21,7 @@ export async function logoutAction(): Promise<ActionResult> {
     sessionCookie.value,
     sessionCookie.attributes,
   );
-  return redirect("/login");
+  return redirect("/");
 }
 
 interface ActionResult {

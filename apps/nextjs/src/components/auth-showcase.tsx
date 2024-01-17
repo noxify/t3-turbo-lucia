@@ -3,6 +3,8 @@ import Link from "next/link";
 import { auth } from "@acme/auth";
 import { Button } from "@acme/ui/button";
 
+import { logoutAction } from "@/actions/logout";
+
 export async function AuthShowcase() {
   const session = await auth();
 
@@ -19,9 +21,9 @@ export async function AuthShowcase() {
       <p className="text-center text-2xl">
         {session && <span>Logged in as {session.user.name}</span>}
       </p>
-      <Button size="lg" asChild>
-        <Link href={"/auth/logout"}>Sign out</Link>
-      </Button>
+      <form action={logoutAction}>
+        <Button size="lg">Sign out</Button>
+      </form>
     </div>
   );
 }

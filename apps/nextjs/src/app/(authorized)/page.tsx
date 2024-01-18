@@ -1,10 +1,20 @@
 import { Suspense } from "react"
+import { redirect } from "next/navigation"
 
-import { AuthShowcase } from "@/components/auth-showcase"
+import { auth } from "@acme/auth"
+
 import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts"
 import { api } from "@/trpc/server"
 
 export default async function HomePage() {
+  //await new Promise((resolve) => setTimeout(resolve, 5000))
+
+  const session = await auth()
+
+  if (!session.user) {
+    redirect("/auth")
+  }
+
   const posts = api.post.all()
 
   return (
@@ -13,7 +23,6 @@ export default async function HomePage() {
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           Create <span className="text-primary">T3</span> Turbo
         </h1>
-        <AuthShowcase />
 
         <CreatePostForm />
         <div className="w-full max-w-2xl overflow-y-scroll">

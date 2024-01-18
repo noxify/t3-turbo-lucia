@@ -8,6 +8,7 @@ import { env } from "../../env.mjs"
 
 const github = new GitHub(env.AUTH_GITHUB_ID, env.AUTH_GITHUB_SECRET)
 
+export const name = "Github"
 export const getAuthorizationUrl = async (state: string) => {
   return await github.createAuthorizationURL(state, {
     scopes: ["read:user", "user:email"],

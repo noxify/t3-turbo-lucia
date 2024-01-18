@@ -13,6 +13,8 @@ const discord = new Discord(
   "http://localhost:3000/api/auth/discord/callback",
 )
 
+export const name = "Discord"
+
 export const getAuthorizationUrl = async (state: string) => {
   return await discord.createAuthorizationURL(state, {
     scopes: [OAuth2Scopes.Identify, OAuth2Scopes.Email],

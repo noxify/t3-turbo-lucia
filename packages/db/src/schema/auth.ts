@@ -5,7 +5,13 @@
  */
 
 import { relations } from "drizzle-orm"
-import { datetime, index, primaryKey, varchar } from "drizzle-orm/mysql-core"
+import {
+  datetime,
+  index,
+  primaryKey,
+  text,
+  varchar,
+} from "drizzle-orm/mysql-core"
 
 import { mySqlTable } from "./_table"
 
@@ -27,6 +33,8 @@ export const sessions = mySqlTable("session", {
     .notNull()
     .references(() => users.id),
   expiresAt: datetime("expires_at").notNull(),
+  ipAddress: varchar("ip_address", { length: 45 }),
+  userAgent: text("user_agent"),
 })
 
 export const accounts = mySqlTable(

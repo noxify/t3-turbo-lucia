@@ -37,7 +37,11 @@ export async function GET(
 
     const userId = await currentProvider.handleCallback(code)
 
-    const session = await lucia.createSession(userId, {})
+    const session = await lucia.createSession(userId, {
+      ipAddress:
+        request.ip ?? request.headers.get("X-Forwarded-For") ?? "127.0.0.1",
+      userAgent: request.headers.get("user-agent"),
+    })
     const sessionCookie = lucia.createSessionCookie(session.id)
     cookies().set(
       sessionCookie.name,

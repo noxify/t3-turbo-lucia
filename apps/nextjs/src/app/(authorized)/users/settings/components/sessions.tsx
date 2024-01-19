@@ -5,7 +5,6 @@ import { userAgentFromString } from "next/server"
 import { MonitorIcon, SmartphoneIcon, Trash2Icon } from "lucide-react"
 
 import type { RouterOutputs } from "@acme/api"
-import { cn } from "@acme/ui"
 import { Button } from "@acme/ui/button"
 import { Skeleton } from "@acme/ui/skeleton"
 import { toast } from "@acme/ui/toast"

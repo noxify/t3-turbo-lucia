@@ -17,7 +17,7 @@ export function SiteHeader() {
             <Logo className="h-16" />
           </Link>
 
-          <div className="hidden gap-1 lg:flex">
+          <div className="flex gap-1">
             <UserMenu />
             <ThemeToggle />
           </div>

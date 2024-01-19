@@ -15,9 +15,5 @@ export default async function UsersSettingsPage() {
 
   const currentUser = await api.user.profile()
 
-  return (
-    <div className="flex w-full justify-center">
-      <UpdateProfileForm user={currentUser} />
-    </div>
-  )
+  return <UpdateProfileForm user={currentUser} />
 }

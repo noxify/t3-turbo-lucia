@@ -17,7 +17,7 @@ export default async function SessionsPage() {
   const sessions = await lucia.getUserSessions(session.user?.id)
   return (
     <>
-      <div className="grid gap-y-2">
+      <div className="grid w-full gap-y-2">
         {sessions.map((ele, index) => {
           const ua = userAgentFromString(ele.userAgent ?? "")
           const isMobile = () =>

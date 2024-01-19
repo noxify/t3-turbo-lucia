@@ -1,9 +1,6 @@
 "use client"
 
-import { use } from "react"
-
 import type { RouterOutputs } from "@acme/api"
-import { auth, lucia } from "@acme/auth"
 import { Button } from "@acme/ui/button"
 import {
   Form,
@@ -15,7 +12,6 @@ import {
   useForm,
 } from "@acme/ui/form"
 import { Input } from "@acme/ui/input"
-import { Label } from "@acme/ui/label"
 import { toast } from "@acme/ui/toast"
 import { UpdateProfileSchema } from "@acme/validators"
 
@@ -50,7 +46,7 @@ export function UpdateProfileForm(props: {
   return (
     <Form {...form}>
       <form
-        className="flex w-full max-w-2xl flex-col gap-4"
+        className="flex w-full flex-col gap-4"
         onSubmit={form.handleSubmit(async (data) => {
           updateProfile.mutate(data)
         })}

@@ -20,7 +20,7 @@
     "@t3-oss/env-nextjs": "0.7.3",
     "arctic": "0.10.5",
     "lucia": "beta",
-    "next": "14.0.4",
+    "next": "14.1.0",
     "oslo": "0.27.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

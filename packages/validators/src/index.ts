@@ -6,5 +6,5 @@ export const CreatePostSchema = z.object({
 })
 
 export const UpdateProfileSchema = z.object({
-  name: z.string(),
+  name: z.string().min(1),
 })

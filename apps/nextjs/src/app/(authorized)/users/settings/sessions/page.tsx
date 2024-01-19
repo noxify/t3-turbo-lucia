@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { userAgentFromString } from "next/server"
-import { BellRing, MonitorIcon, SmartphoneIcon, Trash2Icon } from "lucide-react"
+import { MonitorIcon, SmartphoneIcon, Trash2Icon } from "lucide-react"
 
 import { auth, lucia } from "@acme/auth"
 import { Button } from "@acme/ui/button"
@@ -45,13 +45,13 @@ export default async function SessionsPage() {
               {ele.id !== session.session.id && (
                 <Button
                   size="icon"
-                  variant="outline"
+                  variant="destructive"
                   onClick={async () => {
                     "use server"
                     await invalivateSessionAction(ele.id)
                   }}
                 >
-                  <Trash2Icon />
+                  <Trash2Icon className="h-4 w-4" />
                 </Button>
               )}
             </div>

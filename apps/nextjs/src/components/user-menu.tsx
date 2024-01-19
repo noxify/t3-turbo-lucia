@@ -1,7 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { UserIcon } from "lucide-react"
 
-import { auth } from "@acme/auth"
 import { Button } from "@acme/ui/button"
 import {
   DropdownMenu,
@@ -14,9 +15,10 @@ import {
 } from "@acme/ui/dropdown-menu"
 
 import { logoutAction } from "@/actions/logout"
+import { api } from "@/trpc/react"
 
-export async function UserMenu() {
-  const session = await auth()
+export function UserMenu() {
+  const { data: user } = api.user.profile.useQuery()
 
   return (
     <DropdownMenu>
@@ -29,7 +31,7 @@ export async function UserMenu() {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              Hello {session.user?.name}
+              Hello {user?.name}
             </p>
           </div>
         </DropdownMenuLabel>

@@ -21,7 +21,9 @@ export const userRouter = createTRPCRouter({
         .where(eq(schema.users.id, ctx.session.user.id))
     }),
 
-  sessions: protectedProcedure.query(({ ctx }) => {
+  sessions: protectedProcedure.query(async ({ ctx }) => {
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+
     return lucia.getUserSessions(ctx.session.user?.id)
   }),
 

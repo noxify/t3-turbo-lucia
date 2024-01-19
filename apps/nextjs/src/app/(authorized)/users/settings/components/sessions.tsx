@@ -7,6 +7,7 @@ import { MonitorIcon, SmartphoneIcon, Trash2Icon } from "lucide-react"
 import type { RouterOutputs } from "@acme/api"
 import { cn } from "@acme/ui"
 import { Button } from "@acme/ui/button"
+import { Skeleton } from "@acme/ui/skeleton"
 import { toast } from "@acme/ui/toast"
 
 import { api } from "@/trpc/react"
@@ -95,6 +96,23 @@ export function SessionCard(props: {
           <Trash2Icon className="h-4 w-4" />
         </Button>
       )}
+    </div>
+  )
+}
+
+export const SessionCardSkeleton = () => {
+  return (
+    <div className=" flex w-full items-center space-x-4 rounded-md border p-4">
+      <Skeleton className="h-8 w-8 rounded-full" />
+
+      <div className="flex-1 space-y-1">
+        <p className="text-sm font-medium leading-none">
+          <Skeleton className="h-4 w-[150px]" />
+        </p>
+        <p className="text-sm text-muted-foreground">
+          <Skeleton className="h-4 w-[250px]" />
+        </p>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,12 @@
+import { Suspense } from "react"
 import { redirect } from "next/navigation"
 
 import { auth } from "@acme/auth"
 
-import { UpdateProfileForm } from "@/app/(authorized)/users/settings/components/update-profile-form"
+import {
+  UpdateProfileForm,
+  UpdateProfileFormSkeletion,
+} from "@/app/(authorized)/users/settings/components/profile"
 import { api } from "@/trpc/server"
 
 export default async function UsersSettingsPage() {
@@ -12,7 +16,13 @@ export default async function UsersSettingsPage() {
     redirect("/auth")
   }
 
-  const currentUser = await api.user.profile()
+  const currentUser = api.user.profile()
 
-  return <UpdateProfileForm user={currentUser} />
+  return (
+    <>
+      <Suspense fallback={<UpdateProfileFormSkeletion />}>
+        <UpdateProfileForm user={currentUser} />
+      </Suspense>
+    </>
+  )
 }

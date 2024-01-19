@@ -1,5 +1,7 @@
 "use client"
 
+import { use } from "react"
+
 import type { RouterOutputs } from "@acme/api"
 import { Button } from "@acme/ui/button"
 import {
@@ -12,19 +14,22 @@ import {
   useForm,
 } from "@acme/ui/form"
 import { Input } from "@acme/ui/input"
+import { Skeleton } from "@acme/ui/skeleton"
 import { toast } from "@acme/ui/toast"
 import { UpdateProfileSchema } from "@acme/validators"
 
 import { api } from "@/trpc/react"
 
 export function UpdateProfileForm(props: {
-  user: RouterOutputs["user"]["profile"]
+  user: Promise<RouterOutputs["user"]["profile"]>
 }) {
+  const initialData = use(props.user)
+
   const utils = api.useUtils()
   const form = useForm({
     schema: UpdateProfileSchema,
     defaultValues: {
-      name: props?.user?.name ?? "",
+      name: initialData?.name ?? "",
     },
   })
 
@@ -68,5 +73,15 @@ export function UpdateProfileForm(props: {
         <Button>Update</Button>
       </form>
     </Form>
+  )
+}
+
+export function UpdateProfileFormSkeletion() {
+  return (
+    <div className="flex w-full flex-col space-y-4">
+      <Skeleton className="h-4 w-[150px]" />
+      <Skeleton className="h-10 w-full" />
+      <Skeleton className="h-10 w-full" />
+    </div>
   )
 }

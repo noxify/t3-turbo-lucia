@@ -1,8 +1,8 @@
 "use client"
 
-import { revalidatePath } from "next/cache"
+import { use } from "react"
 
-import type { LuciaUser } from "@acme/auth"
+import type { RouterOutputs } from "@acme/api"
 import { Button } from "@acme/ui/button"
 import {
   Form,
@@ -18,21 +18,30 @@ import { UpdateProfileSchema } from "@acme/validators"
 
 import { api } from "@/trpc/react"
 
-export function UpdateProfileForm({ user }: { user: LuciaUser }) {
+export function UpdateProfileForm(props: {
+  user: RouterOutputs["user"]["profile"]
+}) {
+  const { data: user } = api.user.profile.useQuery(undefined, {
+    initialData: props.user,
+  })
+
+  console.log({ user, props })
+
   const utils = api.useUtils()
   const form = useForm({
     schema: UpdateProfileSchema,
     defaultValues: {
-      name: user.name ?? "",
+      name: user?.name ?? "",
     },
   })
 
   const updateProfile = api.user.updateProfile.useMutation({
-    onSuccess: async () => {
-      form.reset()
+    onSuccess: async (data, variables) => {
       await utils.user.invalidate()
+      form.reset({ name: variables.name })
       toast.success("Profile updated.")
     },
+
     onError: (err) => {
       console.log(err)
       toast.error(

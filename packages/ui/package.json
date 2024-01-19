@@ -15,7 +15,8 @@
     "./command": "./src/command.tsx",
     "./dropdown-menu": "./src/dropdown-menu.tsx",
     "./tailwind-indicator": "./src/tailwind-indicator.tsx",
-    "./separator": "./src/separator.tsx"
+    "./separator": "./src/separator.tsx",
+    "./skeleton": "./src/skeleton.tsx"
   },
   "license": "MIT",
   "scripts": {

@@ -1,12 +1,11 @@
+import { Suspense } from "react"
 import { redirect } from "next/navigation"
-import { userAgentFromString } from "next/server"
-import { BellRing, MonitorIcon, SmartphoneIcon, Trash2Icon } from "lucide-react"
 
-import { auth, lucia } from "@acme/auth"
-import { Button } from "@acme/ui/button"
+import { auth } from "@acme/auth"
+import { Skeleton } from "@acme/ui/skeleton"
 
-import { invalivateSessionAction } from "@/actions/sessions"
 import { UpdateProfileForm } from "@/app/(authorized)/users/settings/components/update-profile"
+import { api } from "@/trpc/server"
 
 export default async function UsersSettingsPage() {
   const session = await auth()
@@ -15,9 +14,11 @@ export default async function UsersSettingsPage() {
     redirect("/auth")
   }
 
+  const currentUser = await api.user.profile()
+
   return (
     <>
-      <UpdateProfileForm user={session.user} />
+      <UpdateProfileForm user={currentUser} />
     </>
   )
 }

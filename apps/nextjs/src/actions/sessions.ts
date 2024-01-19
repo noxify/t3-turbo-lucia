@@ -1,7 +1,5 @@
 "use server"
 
-import { redirect } from "next/navigation"
-
 import { auth, lucia } from "@acme/auth"
 
 export async function invalivateSessionAction(sessionId: string) {
@@ -17,8 +15,4 @@ export async function invalivateSessionAction(sessionId: string) {
   if (userSessions.find((ele) => ele.id === sessionId)) {
     await lucia.invalidateSession(sessionId)
   }
-}
-
-interface ActionResult {
-  error: string | null
 }

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next"
 
 import { cn } from "@acme/ui"
 import { TailwindIndicator } from "@acme/ui/tailwind-indicator"
-import { ThemeProvider, ThemeToggle } from "@acme/ui/theme"
+import { ThemeProvider } from "@acme/ui/theme"
 import { Toaster } from "@acme/ui/toast"
 
 import { TRPCReactProvider } from "@/trpc/react"

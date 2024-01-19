@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { redirect } from "next/navigation"
 
 import { auth } from "@acme/auth"

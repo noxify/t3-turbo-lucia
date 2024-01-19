@@ -1,5 +1,8 @@
+import { TRPCError } from "@trpc/server"
+
+import { lucia } from "@acme/auth"
 import { eq, schema } from "@acme/db"
-import { UpdateProfileSchema } from "@acme/validators"
+import { DeleteSessionSchema, UpdateProfileSchema } from "@acme/validators"
 
 import { createTRPCRouter, protectedProcedure } from "../trpc"
 
@@ -16,5 +19,21 @@ export const userRouter = createTRPCRouter({
         .update(schema.users)
         .set(input)
         .where(eq(schema.users.id, ctx.session.user.id))
+    }),
+
+  sessions: protectedProcedure.query(({ ctx }) => {
+    return lucia.getUserSessions(ctx.session.user?.id)
+  }),
+
+  deleteSession: protectedProcedure
+    .input(DeleteSessionSchema)
+    .mutation(async ({ ctx, input }) => {
+      const userSessions = await lucia.getUserSessions(ctx.session.user.id)
+
+      if (userSessions.find((ele) => ele.id === input.sessionId)) {
+        return await lucia.invalidateSession(input.sessionId)
+      } else {
+        throw new TRPCError({ code: "BAD_REQUEST" })
+      }
     }),
 })

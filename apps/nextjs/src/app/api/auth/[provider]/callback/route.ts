@@ -25,8 +25,6 @@ export async function GET(
   const state = searchParams.get("state")
   const storedState = cookies().get(`oauth_state`)?.value ?? null
   if (!code || !state || !storedState || state !== storedState) {
-    console.log("invalid code / state / storedState ", params.provider)
-
     return new Response(null, {
       status: 400,
     })

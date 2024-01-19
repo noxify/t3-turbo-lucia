@@ -8,3 +8,7 @@ export const CreatePostSchema = z.object({
 export const UpdateProfileSchema = z.object({
   name: z.string().min(1),
 })
+
+export const DeleteSessionSchema = z.object({
+  sessionId: z.string().min(1),
+})

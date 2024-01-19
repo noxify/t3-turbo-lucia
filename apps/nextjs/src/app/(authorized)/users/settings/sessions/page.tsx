@@ -1,11 +1,15 @@
+import { Suspense } from "react"
 import { redirect } from "next/navigation"
 import { userAgentFromString } from "next/server"
 import { MonitorIcon, SmartphoneIcon, Trash2Icon } from "lucide-react"
 
-import { auth, lucia } from "@acme/auth"
+import { auth } from "@acme/auth"
 import { Button } from "@acme/ui/button"
+import { Skeleton } from "@acme/ui/skeleton"
 
 import { invalivateSessionAction } from "@/actions/sessions"
+import { SessionList } from "@/app/(authorized)/users/settings/components/sessions"
+import { api } from "@/trpc/server"
 
 export default async function SessionsPage() {
   const session = await auth()
@@ -14,49 +18,22 @@ export default async function SessionsPage() {
     redirect("/auth")
   }
 
-  const sessions = await lucia.getUserSessions(session.user?.id)
+  const sessions = api.user.sessions()
+
   return (
     <>
       <div className="grid w-full gap-y-2">
-        {sessions.map((ele, index) => {
-          const ua = userAgentFromString(ele.userAgent ?? "")
-          const isMobile = () =>
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-              ele.userAgent ?? "",
-            )
-
-          return (
-            <div
-              className=" flex w-full items-center space-x-4 rounded-md border p-4"
-              key={index}
-            >
-              {isMobile() ? <SmartphoneIcon /> : <MonitorIcon />}
-              <div className="flex-1 space-y-1">
-                <p className="text-sm font-medium leading-none">
-                  {ua.os.name} - {ua.browser.name}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {ele.ipAddress === "::1"
-                    ? "127.0.0.1 (localhost)"
-                    : ele.ipAddress}{" "}
-                  {ele.id === session.session.id && " - Current session"}
-                </p>
-              </div>
-              {ele.id !== session.session.id && (
-                <Button
-                  size="icon"
-                  variant="destructive"
-                  onClick={async () => {
-                    "use server"
-                    await invalivateSessionAction(ele.id)
-                  }}
-                >
-                  <Trash2Icon className="h-4 w-4" />
-                </Button>
-              )}
+        <Suspense
+          fallback={
+            <div className="flex w-full flex-col gap-4">
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
             </div>
-          )
-        })}
+          }
+        >
+          <SessionList sessions={sessions} sessionId={session.session.id} />
+        </Suspense>
       </div>
     </>
   )

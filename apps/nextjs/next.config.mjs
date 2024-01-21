@@ -6,10 +6,7 @@ import "@acme/auth/env"
 const config = {
   reactStrictMode: true,
   experimental: {
-    serverComponentsExternalPackages: [
-      "oslo",
-      "@icons-pack/react-simple-icons",
-    ],
+    serverComponentsExternalPackages: ["@icons-pack/react-simple-icons"],
   },
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [

@@ -1,7 +1,7 @@
 "server only"
 
 import { drizzle } from "drizzle-orm/mysql2"
-import mysql from "mysql2/promise"
+import mysql from "mysql2"
 
 import * as auth from "./schema/auth"
 import * as post from "./schema/post"
@@ -17,7 +17,16 @@ const connection = mysql.createPool({
   user: process.env.DB_USERNAME!,
   password: process.env.DB_PASSWORD!,
   database: process.env.DB_NAME!,
-  connectionLimit: 2, // default is 10
+  connectionLimit: 2,
 })
 
 export const db = drizzle(connection, { schema, mode: "default" })
+
+// const connection = mysql.createConnection({
+//   host: process.env.DB_HOST!,
+//   user: process.env.DB_USERNAME!,
+//   password: process.env.DB_PASSWORD!,
+//   database: process.env.DB_NAME!,
+// })
+
+// export const db = drizzle(connection.promise(), { schema, mode: "default" })

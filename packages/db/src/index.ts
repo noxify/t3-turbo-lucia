@@ -3,10 +3,8 @@ import mysql from "mysql2/promise"
 
 import * as auth from "./schema/auth"
 import * as post from "./schema/post"
-import * as task from "./schema/task"
 
-export * from "./filter-column"
-export const schema = { ...auth, ...post, ...task }
+export const schema = { ...auth, ...post }
 
 export { mySqlTable as tableCreator } from "./schema/_table"
 
@@ -20,5 +18,3 @@ const connection = await mysql.createConnection({
 })
 
 export const db = drizzle(connection, { schema, mode: "default" })
-
-export type Task = typeof task.task.$inferSelect

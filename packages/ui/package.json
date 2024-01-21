@@ -21,9 +21,7 @@
     "./checkbox": "./src/checkbox.tsx",
     "./badge": "./src/badge.tsx",
     "./popover": "./src/popover.tsx",
-    "./table": "./src/table.tsx",
-    "./datatable": "./src/datatable/data-table.tsx",
-    "./datatable/hooks": "./src/datatable/hooks/index.ts"
+    "./table": "./src/table.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -45,7 +43,6 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
-    "@tanstack/react-table": "8.11.6",
     "class-variance-authority": "0.7.0",
     "cmdk": "^0.2.0",
     "next-themes": "0.2.1",

@@ -25,6 +25,12 @@ export async function GET(
   const state = searchParams.get("state")
   const storedState = cookies().get(`oauth_state`)?.value ?? null
   if (!code || !state || !storedState || state !== storedState) {
+    console.error(
+      "token mismatch",
+      "Could be an old cookie value or without a secured connection (https://...).",
+    )
+
+    // TODO: Maybe redirect back with a generic error?
     return new Response(null, {
       status: 400,
     })

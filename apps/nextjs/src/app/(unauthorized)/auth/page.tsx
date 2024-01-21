@@ -59,7 +59,10 @@ export default async function AuthPage() {
               {Object.entries(providers).map(
                 ([providerKey, provider], index) => (
                   <Button variant="outline" type="button" asChild key={index}>
-                    <Link href={`/api/auth/${providerKey}/login`}>
+                    <Link
+                      href={`/api/auth/${providerKey}/login`}
+                      prefetch={false}
+                    >
                       <SigninIcon iconName={providerKey} />
                       {provider.name}
                     </Link>

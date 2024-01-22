@@ -5,8 +5,9 @@ import mysql from "mysql2"
 
 import * as auth from "./schema/auth"
 import * as post from "./schema/post"
+import * as task from "./schema/post"
 
-export const schema = { ...auth, ...post }
+export const schema = { ...auth, ...post, ...task }
 
 export { mySqlTable as tableCreator } from "./schema/_table"
 

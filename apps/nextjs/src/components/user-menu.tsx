@@ -43,8 +43,10 @@ export function UserMenu() {
         <DropdownMenuSeparator />
 
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <Link href="/users/settings">{t("common.settings")}</Link>
+          <DropdownMenuItem asChild>
+            <Link href="/users/settings" className="cursor-pointer">
+              {t("common.settings")}
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
 

@@ -10,6 +10,7 @@
 * Lucia Auth with multi provider support
 * i18n support ( with support for i18n-ally )
 * tailwind with shadcn-ui
+* DataTable Support ( via tanstack table & sadmann7/shadcn-table)
 
 ## Installation
 
@@ -114,5 +115,6 @@ Visit their [wiki](https://github.com/lokalise/i18n-ally/wiki) to learn more abo
 * https://github.com/t3-oss 
 * https://github.com/QuiiBz
 * https://github.com/lucia-auth
+* https://github.com/sadmann7
 
 If you like what you see, feel free to support one or all of them via their sponsoring options ( if available ).

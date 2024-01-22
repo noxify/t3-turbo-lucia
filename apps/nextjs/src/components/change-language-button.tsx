@@ -3,7 +3,6 @@
 import { CheckIcon, LanguagesIcon } from "lucide-react"
 
 import { useChangeLocale, useCurrentLocale } from "@acme/locales/client"
-import { cn } from "@acme/ui"
 import { Button } from "@acme/ui/button"
 import {
   DropdownMenu,

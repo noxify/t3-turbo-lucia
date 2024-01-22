@@ -5,7 +5,7 @@ import mysql from "mysql2"
 
 import * as auth from "./schema/auth"
 import * as post from "./schema/post"
-import * as task from "./schema/post"
+import * as task from "./schema/task"
 
 export const schema = { ...auth, ...post, ...task }
 

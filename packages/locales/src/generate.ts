@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync, writeFileSync } from "fs"
 import path from "path"
 
-import source_de from "@/lang/de.json"
-import source_en from "@/lang/en.json"
+import source_de from "./lang/de.json"
+import source_en from "./lang/en.json"
 
 const sources = {
   de: source_de,

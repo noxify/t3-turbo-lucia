@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { Separator } from "@acme/ui/separator"
 
-import { SettingsSidebar } from "@/app/(authorized)/users/settings/components/sidebar"
+import { SettingsSidebar } from "@/app/[locale]/(authorized)/users/settings/components/sidebar"
 
 export const metadata: Metadata = {
   title: "User settings",

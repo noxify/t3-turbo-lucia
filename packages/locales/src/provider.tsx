@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react"
 
-import { I18nProviderClient } from "@/client"
+import { I18nProviderClient } from "./client"
 
 interface LocaleProviderProps {
   children: ReactNode

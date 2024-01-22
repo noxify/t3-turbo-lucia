@@ -6,7 +6,7 @@ import { auth } from "@acme/auth"
 import {
   UpdateProfileForm,
   UpdateProfileFormSkeletion,
-} from "@/app/(authorized)/users/settings/components/profile"
+} from "@/app/[locale]/(authorized)/users/settings/components/profile"
 import { api } from "@/trpc/server"
 
 export default async function UsersSettingsPage() {

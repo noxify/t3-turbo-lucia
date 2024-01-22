@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 
-import { LocaleProvider } from "@acme/locales"
+import { LocaleProvider } from "@acme/locales/provider"
 
 export interface LocaleLayoutProps {
   children: ReactNode

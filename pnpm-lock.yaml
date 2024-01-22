@@ -80,9 +80,6 @@ importers:
       next:
         specifier: 14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
-      next-international:
-        specifier: 1.2.3
-        version: 1.2.3
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -301,6 +298,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@acme/locales':
+        specifier: workspace:*
+        version: link:../locales
       '@hookform/resolvers':
         specifier: 3.3.4
         version: 3.3.4(react-hook-form@7.49.3)

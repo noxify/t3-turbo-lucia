@@ -1,8 +1,10 @@
 export default {
   "auth": {
-    "signout": "Abmelden"
+    "signout": "Abmelden",
+    "headline": "Anmelden mit",
+    "page_title": "Anmelden"
   },
-  "welcome": "Hallo {name}!",
+  "welcome": "Hallo <span class=\"font-medium\">{name}</span>!",
   "common": {
     "delete": "Löschen",
     "create": "Erstellen",
@@ -23,5 +25,10 @@ export default {
       "title": "Titel",
       "content": "Inhalt"
     }
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
   }
 } as const

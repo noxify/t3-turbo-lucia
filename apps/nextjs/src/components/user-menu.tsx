@@ -32,17 +32,22 @@ export function UserMenu() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {t("welcome", { name: user?.name })}
-            </p>
+            <p
+              className="text-sm leading-none"
+              dangerouslySetInnerHTML={{
+                __html: t("welcome", { name: user?.name }),
+              }}
+            ></p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+
         <DropdownMenuGroup>
-          <Link href="/users/settings">
-            <DropdownMenuItem>{t("common.settings")}</DropdownMenuItem>
-          </Link>
+          <DropdownMenuItem>
+            <Link href="/users/settings">{t("common.settings")}</Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator />
 
         <form action={logoutAction}>

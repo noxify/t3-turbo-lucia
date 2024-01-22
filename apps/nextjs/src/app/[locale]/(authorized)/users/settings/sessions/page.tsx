@@ -6,7 +6,7 @@ import { auth } from "@acme/auth"
 import {
   SessionCardSkeleton,
   SessionList,
-} from "@/app/(authorized)/users/settings/components/sessions"
+} from "@/app/[locale]/(authorized)/users/settings/components/sessions"
 import { api } from "@/trpc/server"
 
 export default async function SessionsPage() {

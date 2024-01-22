@@ -9,6 +9,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@acme/ui/dropdown-menu"
 
@@ -25,22 +26,22 @@ export function ChangeLocaleButton() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => changeLocale("de")}>
-          <CheckIcon
-            className={cn(
-              "mr-2 h-4 w-4",
-              currentLanguage !== "de" ? "hidden" : "",
-            )}
-          />
           <span>DE</span>
+
+          {currentLanguage === "de" && (
+            <DropdownMenuShortcut>
+              <CheckIcon className="size-4" />
+            </DropdownMenuShortcut>
+          )}
         </DropdownMenuItem>
+
         <DropdownMenuItem onClick={() => changeLocale("en")}>
-          <CheckIcon
-            className={cn(
-              "mr-2 h-4 w-4",
-              currentLanguage !== "en" ? "hidden" : "",
-            )}
-          />
-          EN
+          <span>EN</span>
+          {currentLanguage === "en" && (
+            <DropdownMenuShortcut>
+              <CheckIcon className="size-4" />
+            </DropdownMenuShortcut>
+          )}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

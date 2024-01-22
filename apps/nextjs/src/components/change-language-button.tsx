@@ -3,14 +3,14 @@
 import { CheckIcon, LanguagesIcon } from "lucide-react"
 
 import { useChangeLocale, useCurrentLocale } from "@acme/locales/client"
-import { Button } from "@acme/ui/button"
+import { Button } from "@acme/ui/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@acme/ui/dropdown-menu"
+} from "@acme/ui/ui/dropdown-menu"
 
 export function ChangeLocaleButton() {
   const changeLocale = useChangeLocale({ preserveSearchParams: true })

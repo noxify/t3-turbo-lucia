@@ -1,11 +1,18 @@
 "use client"
 
-import * as React from "react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn,
-} from "@/types"
+} from "@/components/data-table/data-table"
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  PaginationState,
+  SortingState,
+  VisibilityState,
+} from "@tanstack/react-table"
+import * as React from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import {
   getCoreRowModel,
   getFacetedRowModel,
@@ -14,11 +21,6 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-  type ColumnDef,
-  type ColumnFiltersState,
-  type PaginationState,
-  type SortingState,
-  type VisibilityState,
 } from "@tanstack/react-table"
 
 import { useDebounce } from "@/hooks/use-debounce"
@@ -98,17 +100,17 @@ export function useDataTable<TData, TValue>({
 
       return newSearchParams.toString()
     },
-    [searchParams]
+    [searchParams],
   )
   // Initial column filters
   const initialColumnFilters: ColumnFiltersState = React.useMemo(() => {
     return Array.from(searchParams.entries()).reduce<ColumnFiltersState>(
       (filters, [key, value]) => {
         const filterableColumn = filterableColumns.find(
-          (column) => column.id === key
+          (column) => column.id === key,
         )
         const searchableColumn = searchableColumns.find(
-          (column) => column.id === key
+          (column) => column.id === key,
         )
 
         if (filterableColumn) {
@@ -125,7 +127,7 @@ export function useDataTable<TData, TValue>({
 
         return filters
       },
-      []
+      [],
     )
   }, [filterableColumns, searchableColumns, searchParams])
 
@@ -148,7 +150,7 @@ export function useDataTable<TData, TValue>({
       pageIndex,
       pageSize,
     }),
-    [pageIndex, pageSize]
+    [pageIndex, pageSize],
   )
 
   React.useEffect(() => {
@@ -166,7 +168,7 @@ export function useDataTable<TData, TValue>({
       })}`,
       {
         scroll: false,
-      }
+      },
     )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -187,7 +189,7 @@ export function useDataTable<TData, TValue>({
         sort: sorting[0]?.id
           ? `${sorting[0]?.id}.${sorting[0]?.desc ? "desc" : "asc"}`
           : null,
-      })}`
+      })}`,
     )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -199,10 +201,10 @@ export function useDataTable<TData, TValue>({
       JSON.stringify(
         columnFilters.filter((filter) => {
           return searchableColumns.find((column) => column.id === filter.id)
-        })
+        }),
       ),
-      500
-    )
+      500,
+    ),
   ) as ColumnFiltersState
 
   const filterableColumnFilters = columnFilters.filter((filter) => {
@@ -236,8 +238,8 @@ export function useDataTable<TData, TValue>({
       if (
         (searchableColumns.find((column) => column.id === key) &&
           !debouncedSearchableColumnFilters.find(
-            (column) => column.id === key
-          )) ||
+            (column) => column.id === key,
+          )) ??
         (filterableColumns.find((column) => column.id === key) &&
           !filterableColumnFilters.find((column) => column.id === key))
       ) {

@@ -3,7 +3,7 @@
 import { use } from "react"
 
 import type { RouterOutputs } from "@acme/api"
-import { Button } from "@acme/ui/button"
+import { Button } from "@acme/ui/ui/button"
 import {
   Form,
   FormControl,
@@ -12,10 +12,10 @@ import {
   FormLabel,
   FormMessage,
   useForm,
-} from "@acme/ui/form"
-import { Input } from "@acme/ui/input"
-import { Skeleton } from "@acme/ui/skeleton"
-import { toast } from "@acme/ui/toast"
+} from "@acme/ui/ui/form"
+import { Input } from "@acme/ui/ui/input"
+import { Skeleton } from "@acme/ui/ui/skeleton"
+import { toast } from "@acme/ui/ui/toast"
 import { UpdateProfileSchema } from "@acme/validators"
 
 import { api } from "@/trpc/react"

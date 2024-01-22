@@ -4,8 +4,8 @@ import type { Table } from "@tanstack/react-table"
 import React from "react"
 import { Cross2Icon } from "@radix-ui/react-icons"
 
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
+import { Button } from "../ui/button"
 
 interface DataTableFloatingBarProps<TData>
   extends React.HTMLAttributes<HTMLElement> {

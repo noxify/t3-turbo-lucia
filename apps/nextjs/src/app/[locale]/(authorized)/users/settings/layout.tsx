@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { Separator } from "@acme/ui/separator"
+import { Separator } from "@acme/ui/ui/separator"
 
 import { SettingsSidebar } from "@/app/[locale]/(authorized)/users/settings/components/sidebar"
 

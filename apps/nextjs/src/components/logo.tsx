@@ -1,6 +1,6 @@
 import { CommandIcon } from "lucide-react"
 
-import { cn } from "@acme/ui"
+import { cn } from "@acme/ui/utils"
 
 export function Logo({ className }: { className?: string }) {
   return (

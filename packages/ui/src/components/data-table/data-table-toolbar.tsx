@@ -1,19 +1,19 @@
 "use client"
 
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn,
-} from "@/components/data-table/data-table"
 import type { Table } from "@tanstack/react-table"
 import * as React from "react"
 import Link from "next/link"
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons"
 
-import { DataTableFacetedFilter } from "@/components/data-table/data-table-faceted-filter"
-import { DataTableViewOptions } from "@/components/data-table/data-table-view-options"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
+import type {
+  DataTableFilterableColumn,
+  DataTableSearchableColumn,
+} from "./data-table"
+import { cn } from "../../lib/utils"
+import { Button, buttonVariants } from "../ui/button"
+import { Input } from "../ui/input"
+import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { DataTableViewOptions } from "./data-table-view-options"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>

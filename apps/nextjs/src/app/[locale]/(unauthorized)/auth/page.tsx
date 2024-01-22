@@ -5,8 +5,8 @@ import { CommandIcon } from "lucide-react"
 
 import { auth, providers } from "@acme/auth"
 import { getI18n } from "@acme/locales/server"
-import { cn } from "@acme/ui"
-import { Button } from "@acme/ui/button"
+import { Button } from "@acme/ui/ui/button"
+import { cn } from "@acme/ui/utils"
 
 import { Logo } from "@/components/logo"
 

@@ -16,7 +16,7 @@
     "./ui/command": "./src/components/ui/command.tsx",
     "./ui/dropdown-menu": "./src/components/ui/dropdown-menu.tsx",
     "./ui/separator": "./src/components/ui/separator.tsx",
-    "./i/skeleton": "./src/components/ui/skeleton.tsx",
+    "./ui/skeleton": "./src/components/ui/skeleton.tsx",
     "./ui/select": "./src/components/ui/select.tsx",
     "./ui/checkbox": "./src/components/ui/checkbox.tsx",
     "./ui/badge": "./src/components/ui/badge.tsx",

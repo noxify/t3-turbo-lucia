@@ -5,9 +5,9 @@ import { userAgentFromString } from "next/server"
 import { MonitorIcon, SmartphoneIcon, Trash2Icon } from "lucide-react"
 
 import type { RouterOutputs } from "@acme/api"
-import { Button } from "@acme/ui/button"
-import { Skeleton } from "@acme/ui/skeleton"
-import { toast } from "@acme/ui/toast"
+import { Button } from "@acme/ui/ui/button"
+import { Skeleton } from "@acme/ui/ui/skeleton"
+import { toast } from "@acme/ui/ui/toast"
 
 import { api } from "@/trpc/react"
 

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { UserIcon } from "lucide-react"
 
 import { useI18n } from "@acme/locales/client"
-import { Button } from "@acme/ui/button"
+import { Button } from "@acme/ui/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@acme/ui/dropdown-menu"
+} from "@acme/ui/ui/dropdown-menu"
 
 import { logoutAction } from "@/actions/logout"
 import { api } from "@/trpc/react"

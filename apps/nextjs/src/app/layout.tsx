@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next"
 
-import { cn } from "@acme/ui"
 import { TailwindIndicator } from "@acme/ui/tailwind-indicator"
 import { ThemeProvider } from "@acme/ui/theme"
-import { Toaster } from "@acme/ui/toast"
+import { Toaster } from "@acme/ui/ui/toast"
+import { cn } from "@acme/ui/utils"
 
 import { TRPCReactProvider } from "@/trpc/react"
 

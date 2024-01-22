@@ -92,7 +92,7 @@ This packages uses [next-international](https://github.com/quiiBz/next-internati
 This setup is a bit different to the original docs.
 We're using `json` files and generating the `ts` files from them.
 
-Why? Using json files allows us to use the vsc extension `i18n ally`, which makes it a lot easier to manage the translations.
+Why? Using json files allows us to use the vsc extension [`i18n ally`](https://github.com/lokalise/i18n-ally), which makes it a lot easier to manage the translations.
 
 
 **Example:**

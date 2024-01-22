@@ -13,6 +13,7 @@ import {
 } from "./dropdown-menu"
 
 function ThemeToggle() {
+  const t = use
   const { setTheme } = useTheme()
 
   return (

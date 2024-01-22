@@ -3,6 +3,8 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "yoavbls.pretty-ts-errors",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "thibault-vanderseypen.i18n-json-editor",
+    "lokalise.i18n-ally"
   ]
 }

@@ -38,6 +38,9 @@ importers:
       '@acme/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@acme/locales':
+        specifier: workspace:*
+        version: link:../../packages/locales
       '@acme/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -54,8 +57,8 @@ importers:
         specifier: 5.17.19
         version: 5.17.19(react@18.2.0)
       '@tanstack/react-query-devtools':
-        specifier: 5.17.19
-        version: 5.17.19(@tanstack/react-query@5.17.19)(react@18.2.0)
+        specifier: 5.17.21
+        version: 5.17.21(@tanstack/react-query@5.17.19)(react@18.2.0)
       '@tanstack/react-query-next-experimental':
         specifier: 5.17.19
         version: 5.17.19(@tanstack/react-query@5.17.19)(next@14.1.0)(react@18.2.0)
@@ -72,11 +75,14 @@ importers:
         specifier: next
         version: 11.0.0-next-alpha.152
       lucide-react:
-        specifier: ^0.314.0
+        specifier: 0.314.0
         version: 0.314.0(react@18.2.0)
       next:
         specifier: 14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+      next-international:
+        specifier: 1.2.3
+        version: 1.2.3
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -265,16 +271,44 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
+  packages/locales:
+    dependencies:
+      next-international:
+        specifier: 1.2.3
+        version: 1.2.3
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: workspace:*
+        version: link:../../tooling/prettier
+      '@acme/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/typescript
+      eslint:
+        specifier: 8.56.0
+        version: 8.56.0
+      tsx:
+        specifier: 4.7.0
+        version: 4.7.0
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
   packages/ui:
     dependencies:
       '@hookform/resolvers':
         specifier: 3.3.4
         version: 3.3.4(react-hook-form@7.49.3)
       '@radix-ui/react-checkbox':
-        specifier: ^1.0.4
+        specifier: 1.0.4
         version: 1.0.4(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-dialog':
-        specifier: ^1.0.5
+        specifier: 1.0.5
         version: 1.0.5(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-dropdown-menu':
         specifier: 2.0.6
@@ -286,25 +320,25 @@ importers:
         specifier: 2.0.2
         version: 2.0.2(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-popover':
-        specifier: ^1.0.7
+        specifier: 1.0.7
         version: 1.0.7(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-select':
-        specifier: ^2.0.0
+        specifier: 2.0.0
         version: 2.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-separator':
-        specifier: ^1.0.3
+        specifier: 1.0.3
         version: 1.0.3(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-slot':
         specifier: 1.0.2
         version: 1.0.2(react@18.2.0)
       '@radix-ui/react-toast':
-        specifier: ^1.1.5
+        specifier: 1.1.5
         version: 1.1.5(react-dom@18.2.0)(react@18.2.0)
       class-variance-authority:
         specifier: 0.7.0
         version: 0.7.0
       cmdk:
-        specifier: ^0.2.0
+        specifier: 0.2.0
         version: 0.2.0(react-dom@18.2.0)(react@18.2.0)
       next-themes:
         specifier: 0.2.1
@@ -2731,17 +2765,17 @@ packages:
     resolution: {integrity: sha512-Lzw8FUtnLCc9Jwz0sw9xOjZB+/mCCmJev38v2wHMUl/ioXNIhnNWeMxu0NKUjIhAd62IRB3eAtvxAGDJ55UkyA==}
     dev: false
 
-  /@tanstack/query-devtools@5.17.7:
-    resolution: {integrity: sha512-TfgvOqza5K7Sk6slxqkRIvXlEJoUoPSsGGwpuYSrpqgSwLSSvPPpZhq7hv7hcY5IvRoTNGoq6+MT01C/jILqoQ==}
+  /@tanstack/query-devtools@5.17.21:
+    resolution: {integrity: sha512-WWfcnNjTEqcuAS5GyKkVGkseuES6yd197MJWGImBu+MoCjWPqxSXKCCfm+utSXJauJUGm7xoMmhqCphiQdjf8w==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.17.19(@tanstack/react-query@5.17.19)(react@18.2.0):
-    resolution: {integrity: sha512-DvUuEsrN4Ndmf52t1fN7VuW0dPwP55Q7mXmHF3jI0ORsjsaviZF8C9SdOEwhaXVKdPH+lvM+jJOuxv/1IrDy9Q==}
+  /@tanstack/react-query-devtools@5.17.21(@tanstack/react-query@5.17.19)(react@18.2.0):
+    resolution: {integrity: sha512-Ri1AuWpN67eyPdMTlPxx1TMGNUaxTHrGv0ll0S20ZObz/Xms5wfANV3c6OX0HZTY0igudP1k5jpRLXNkd249mg==}
     peerDependencies:
       '@tanstack/react-query': ^5.17.19
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-devtools': 5.17.7
+      '@tanstack/query-devtools': 5.17.21
       '@tanstack/react-query': 5.17.19(react@18.2.0)
       react: 18.2.0
     dev: false
@@ -5017,6 +5051,10 @@ packages:
       side-channel: 1.0.4
     dev: false
 
+  /international-types@0.8.1:
+    resolution: {integrity: sha512-tajBCAHo4I0LIFlmQ9ZWfjMWVyRffzuvfbXCd6ssFt5u1Zw15DN0UBpVTItXdNa1ls+cpQt3Yw8+TxsfGF8JcA==}
+    dev: false
+
   /invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
     dependencies:
@@ -5686,6 +5724,14 @@ packages:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
     dev: true
+
+  /next-international@1.2.3:
+    resolution: {integrity: sha512-pLHX6dIjg2bd/LHcBIylhQXsiv2CQgAEKXb1tlVMXIj+RxpxgB9ymgkNdm4OsEmEpVlleCoq4T3k4Pi9QXZ8wQ==}
+    dependencies:
+      client-only: 0.0.1
+      international-types: 0.8.1
+      server-only: 0.0.1
+    dev: false
 
   /next-themes@0.2.1(next@14.1.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
@@ -6554,6 +6600,10 @@ packages:
     resolution: {integrity: sha512-hr3Wtp/GZIc/6DAGPDcV4/9WoZhjrkXsi5B/07QgX8tsdc6ilr7BFM6PM6rbdAX1kFSDYeZGLipIZZKyQP0O5Q==}
     dev: false
 
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+    dev: false
+
   /set-function-name@2.0.1:
     resolution: {integrity: sha512-tMNCiqYVkXIZgc2Hnoy2IvC/f8ezc5koaRFkCjrpWzGpCd3qbZXPzVy9MAZzK1ch/X0jvSkojys3oqJN0qCmdA==}
     engines: {node: '>= 0.4'}
@@ -7047,6 +7097,17 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+
+  /tsx@4.7.0:
+    resolution: {integrity: sha512-I+t79RYPlEYlHn9a+KzwrvEwhJg35h/1zHsLC2JXvhC2mdynMv6Zxzvhv5EMV6VF5qJlLlkSnMVvdZV3PSIGcg==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+    dependencies:
+      esbuild: 0.19.11
+      get-tsconfig: 4.7.2
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: true
 
   /turbo-darwin-64@1.11.3:
     resolution: {integrity: sha512-IsOOg2bVbIt3o/X8Ew9fbQp5t1hTHN3fGNQYrPQwMR2W1kIAC6RfbVD4A9OeibPGyEPUpwOH79hZ9ydFH5kifw==}

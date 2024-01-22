@@ -18,5 +18,11 @@
     "next/router.d.ts",
     "next/dist/client/router.d.ts"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "i18n-ally.localesPaths": ["packages/locales/lang"],
+  "i18n-ally.editor.preferEditor": true,
+  "i18n-ally.pathMatcher": "{locale}.json",
+  "i18n-ally.enabledFrameworks": ["next-international"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.extract.autoDetect": true
 }

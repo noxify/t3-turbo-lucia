@@ -68,7 +68,7 @@ The db is currently configured for `mysql`.
 
 Feel free to change it.
 
-
+## Quick start
 
 ```bash
 # Install dependencies

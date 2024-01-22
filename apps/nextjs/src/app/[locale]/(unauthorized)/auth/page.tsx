@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons"
@@ -10,10 +9,6 @@ import { cn } from "@acme/ui"
 import { Button } from "@acme/ui/button"
 
 import { Logo } from "@/components/logo"
-
-export const metadata: Metadata = {
-  title: "Auth",
-}
 
 export async function generateMetadata() {
   const t = await getI18n()

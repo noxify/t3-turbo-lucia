@@ -22,7 +22,8 @@
     "postinstall": "pnpm lint:ws",
     "typecheck": "turbo typecheck",
     "deps:check": "pnpm outdated -r",
-    "deps:update": "pnpm update -i -L -r"
+    "deps:update": "pnpm update -i -L -r",
+    "lang:gen": "pnpm -F locales generate"
   },
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",

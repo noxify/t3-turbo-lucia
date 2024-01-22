@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { UserIcon } from "lucide-react"
 
+import { useI18n } from "@acme/locales/client"
 import { Button } from "@acme/ui/button"
 import {
   DropdownMenu,
@@ -18,6 +19,7 @@ import { logoutAction } from "@/actions/logout"
 import { api } from "@/trpc/react"
 
 export function UserMenu() {
+  const t = useI18n()
   const { data: user } = api.user.profile.useQuery()
 
   return (
@@ -30,22 +32,27 @@ export function UserMenu() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              Hello {user?.name}
-            </p>
+            <p
+              className="text-sm leading-none"
+              dangerouslySetInnerHTML={{
+                __html: t("welcome", { name: user?.name }),
+              }}
+            ></p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+
         <DropdownMenuGroup>
-          <Link href="/users/settings">
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-          </Link>
+          <DropdownMenuItem>
+            <Link href="/users/settings">{t("common.settings")}</Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator />
 
         <form action={logoutAction}>
           <DropdownMenuItem>
-            <button>Sign out</button>
+            <button>{t("auth.signout")}</button>
           </DropdownMenuItem>
         </form>
       </DropdownMenuContent>

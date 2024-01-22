@@ -4,6 +4,8 @@ import * as React from "react"
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 import { ThemeProvider, useTheme } from "next-themes"
 
+import { useI18n } from "@acme/locales/client"
+
 import { Button } from "./button"
 import {
   DropdownMenu,
@@ -13,6 +15,7 @@ import {
 } from "./dropdown-menu"
 
 function ThemeToggle() {
+  const t = useI18n()
   const { setTheme } = useTheme()
 
   return (
@@ -26,13 +29,13 @@ function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+          {t("theme.light")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
+          {t("theme.dark")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
+          {t("theme.system")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

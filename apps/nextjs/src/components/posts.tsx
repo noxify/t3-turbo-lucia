@@ -3,6 +3,7 @@
 import { use } from "react"
 
 import type { RouterOutputs } from "@acme/api"
+import { useI18n } from "@acme/locales/client"
 import { cn } from "@acme/ui"
 import { Button } from "@acme/ui/button"
 import {
@@ -20,6 +21,8 @@ import { CreatePostSchema } from "@acme/validators"
 import { api } from "@/trpc/react"
 
 export function CreatePostForm() {
+  const t = useI18n()
+
   const form = useForm({
     schema: CreatePostSchema,
     defaultValues: {
@@ -37,8 +40,8 @@ export function CreatePostForm() {
     onError: (err) => {
       toast.error(
         err?.data?.code === "UNAUTHORIZED"
-          ? "You must be logged in to post"
-          : "Failed to create post",
+          ? t("error.not_authorized")
+          : t("posts.create.failed"),
       )
     },
   })
@@ -57,7 +60,7 @@ export function CreatePostForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Title" />
+                <Input {...field} placeholder={t("posts.form.title")} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,13 +72,13 @@ export function CreatePostForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input {...field} placeholder="Content" />
+                <Input {...field} placeholder={t("posts.form.content")} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button>Create</Button>
+        <Button>{t("common.create")}</Button>
       </form>
     </Form>
   )
@@ -84,6 +87,8 @@ export function CreatePostForm() {
 export function PostList(props: {
   posts: Promise<RouterOutputs["post"]["all"]>
 }) {
+  const t = useI18n()
+
   // TODO: Make `useSuspenseQuery` work without having to pass a promise from RSC
   const initialData = use(props.posts)
   const { data: posts } = api.post.all.useQuery(undefined, {
@@ -98,7 +103,9 @@ export function PostList(props: {
         <PostCardSkeleton pulse={false} />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/10">
-          <p className="text-2xl font-bold text-white">No posts yet</p>
+          <p className="text-2xl font-bold text-white">
+            {t("posts.no_records")}
+          </p>
         </div>
       </div>
     )
@@ -116,6 +123,7 @@ export function PostList(props: {
 export function PostCard(props: {
   post: RouterOutputs["post"]["all"][number]
 }) {
+  const t = useI18n()
   const utils = api.useUtils()
   const deletePost = api.post.delete.useMutation({
     onSuccess: async () => {
@@ -124,8 +132,8 @@ export function PostCard(props: {
     onError: (err) => {
       toast.error(
         err?.data?.code === "UNAUTHORIZED"
-          ? "You must be logged in to delete a post"
-          : "Failed to delete post",
+          ? t("error.not_authorized")
+          : t("posts.delete.failed"),
       )
     },
   })
@@ -142,7 +150,7 @@ export function PostCard(props: {
           className="cursor-pointer text-sm font-bold uppercase text-primary hover:bg-transparent hover:text-white"
           onClick={() => deletePost.mutate(props.post.id)}
         >
-          Delete
+          {t("common.delete")}
         </Button>
       </div>
     </div>

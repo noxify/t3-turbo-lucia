@@ -1,17 +1,20 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { SiDiscord, SiGithub } from "@icons-pack/react-simple-icons"
 import { CommandIcon } from "lucide-react"
 
 import { auth, providers } from "@acme/auth"
+import { getI18n } from "@acme/locales/server"
 import { cn } from "@acme/ui"
 import { Button } from "@acme/ui/button"
 
 import { Logo } from "@/components/logo"
 
-export const metadata: Metadata = {
-  title: "Auth",
+export async function generateMetadata() {
+  const t = await getI18n()
+  return {
+    title: t("auth.page_title"),
+  }
 }
 
 function SigninIcon({
@@ -32,6 +35,7 @@ function SigninIcon({
 }
 
 export default async function AuthPage() {
+  const t = await getI18n()
   const session = await auth()
 
   if (session.user) {
@@ -53,7 +57,7 @@ export default async function AuthPage() {
                 <Logo />
               </div>
               <h1 className="mb-4 text-2xl font-semibold tracking-tight">
-                Sign in with
+                {t("auth.headline")}
               </h1>
 
               {Object.entries(providers).map(

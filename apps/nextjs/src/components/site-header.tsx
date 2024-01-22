@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ThemeToggle } from "@acme/ui/theme"
 
+import { LanguageSwitcher } from "@/components/language-switcher"
 import { Logo } from "@/components/logo"
 import { UserMenu } from "@/components/user-menu"
 
@@ -19,6 +20,7 @@ export function SiteHeader() {
 
           <div className="flex gap-1">
             <UserMenu />
+            <LanguageSwitcher />
             <ThemeToggle />
           </div>
         </nav>

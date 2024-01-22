@@ -6,13 +6,13 @@ import { ThemeProvider, useTheme } from "next-themes"
 
 import { useI18n } from "@acme/locales/client"
 
-import { Button } from "./button"
+import { Button } from "./ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./dropdown-menu"
+} from "./ui/dropdown-menu"
 
 function ThemeToggle() {
   const t = useI18n()

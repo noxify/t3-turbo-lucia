@@ -1,5 +1,16 @@
 # t3-turbo-lucia
 
+> The stack originates from [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo).
+
+## Features
+
+* Monorepo via turborepo
+* NextJS 14.1
+* TRPC ( with RSC support )
+* Lucia Auth with multi provider support
+* i18n support ( with support for i18n-ally )
+* tailwind with shadcn-ui
+
 ## Installation
 
 Use Turbo's CLI to init your project (use PNPM as package manager):
@@ -27,9 +38,15 @@ packages
   ├─ auth
   |   └─ Authentication using lucia-auth@v3
   ├─ db
-  |   └─ Typesafe db calls using Drizzle & Planetscale
+  |   └─ Typesafe db calls using Drizzle & mysql
+  ├─ locales
+  |   └─ type-safe internationalization
+  ├─ validators
+  |   └─ shared zod schemas for trpc and forms
   └─ ui
       └─ Start of a UI package for the webapp using shadcn-ui
+  
+
 tooling
   ├─ eslint
   |   └─ shared, fine-grained, eslint presets
@@ -49,9 +66,9 @@ To get it running, follow the steps below.
 
 The db is currently configured for `mysql`.
 
-Feel free to change.
+Feel free to change it.
 
-### 1. Setup dependencies
+
 
 ```bash
 # Install dependencies
@@ -63,14 +80,39 @@ cp .env.example .env
 
 # Push the Drizzle schema to the database
 pnpm db:push
+
+# Let's get the party stared
+pnpm dev
 ```
 
-## Some notes
+## i18n 
 
-- app feels a bit slow in dev mode - Possible that this is a local hardware problem ( 2017 MBP i7 )
-  - Not sure if safari could be a problem, too
-  - anyway.. it's working :D
+This packages uses [next-international](https://github.com/quiiBz/next-international) for type-safe translations.
 
-## References
+This setup is a bit different to the original docs.
+We're using `json` files and generating the `ts` files from them.
 
-The stack originates from [create-t3-turbo](https://github.com/t3-oss/create-t3-turbo).
+Why? Using json files allows us to use the vsc extension `i18n ally`, which makes it a lot easier to manage the translations.
+
+
+**Example:**
+
+Inside a component you write something like `{t('new.translation.key')}`. If you have the vsc extension installed, everything is pre-configured and you only have to hover over the `new.translation.key` and you will see a popover from `i18n ally` which helps you to generate the translations.
+
+If you save the translation, it will update the `json` files inside `packages/locales/src/lang`.
+
+Last step what you have to do is to run `pnpm lang:gen` from your project root to (re-)generate the `ts` files ( which are located in `packages/locales/src/generated` ).
+
+The vsc extension includes also some other features.
+
+Visit their [wiki](https://github.com/lokalise/i18n-ally/wiki) to learn more about it.
+
+## Credits / Special thanks
+
+* https://github.com/shadcn-ui
+* https://github.com/juliusmarminge
+* https://github.com/t3-oss 
+* https://github.com/QuiiBz
+* https://github.com/lucia-auth
+
+If you like what you see, feel free to support one or all of them via their sponsoring options ( if available ).

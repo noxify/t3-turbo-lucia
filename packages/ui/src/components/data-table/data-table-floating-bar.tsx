@@ -2,7 +2,7 @@
 
 import type { Table } from "@tanstack/react-table"
 import React from "react"
-import { Cross2Icon } from "@radix-ui/react-icons"
+import { XIcon } from "lucide-react"
 
 import { cn } from "../../lib/utils"
 import { Button } from "../ui/button"
@@ -34,7 +34,7 @@ export function DataTableFloatingBar<TData>({
         className="h-auto bg-transparent p-1 text-white hover:bg-zinc-700"
         onClick={() => table.toggleAllRowsSelected(false)}
       >
-        <Cross2Icon className="size-4" aria-hidden="true" />
+        <XIcon className="size-4" aria-hidden="true" />
       </Button>
       {table.getFilteredSelectedRowModel().rows.length} row(s) selected
       {children}

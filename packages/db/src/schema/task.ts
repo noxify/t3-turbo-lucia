@@ -1,5 +1,7 @@
 import { sql } from "drizzle-orm"
 import { mysqlEnum, timestamp, varchar } from "drizzle-orm/mysql-core"
+import { createInsertSchema } from "drizzle-zod"
+import { z } from "zod"
 
 import { createId, mySqlTable } from "./_table"
 
@@ -22,4 +24,21 @@ export const task = mySqlTable("task", {
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
   updatedAt: timestamp("updatedAt").onUpdateNow(),
+})
+
+export const createTaskSchema = createInsertSchema(task)
+
+export const updateTaskStatusSchema = createTaskSchema.pick({
+  id: true,
+  status: true,
+})
+
+export const updateTaskPrioritySchema = createTaskSchema.pick({
+  id: true,
+  priority: true,
+})
+
+export const updateTaskLabelSchema = createTaskSchema.pick({
+  id: true,
+  label: true,
 })

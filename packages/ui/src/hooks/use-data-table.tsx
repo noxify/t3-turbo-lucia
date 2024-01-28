@@ -23,7 +23,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 
-import { useDebounce } from "@/hooks/use-debounce"
+import { useDebounce } from "./use-debounce"
 
 interface UseDataTableProps<TData, TValue> {
   /**

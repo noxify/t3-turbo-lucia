@@ -1,33 +1,34 @@
+import type { Table } from "@tanstack/react-table"
 import * as React from "react"
 import { unstable_noStore as noStore } from "next/cache"
-import { tasks, type Task } from "@/db/schema"
-import { ArrowUpIcon, CheckCircledIcon, TrashIcon } from "@radix-ui/react-icons"
-import { SelectTrigger } from "@radix-ui/react-select"
-import { type Table } from "@tanstack/react-table"
-import { toast } from "sonner"
+import { ArrowUpIcon, CheckCircle2Icon, TrashIcon } from "lucide-react"
 
-import { catchError } from "@/lib/catch-error"
-import { Button } from "@/components/ui/button"
+import type { TaskPriority, TaskStatus } from "@acme/db"
+import { schema } from "@acme/db"
+import { catchError } from "@acme/ui/catch-error"
+import { Button } from "@acme/ui/ui/button"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-} from "@/components/ui/select"
+  SelectTrigger,
+} from "@acme/ui/ui/select"
+import { toast } from "@acme/ui/ui/toast"
 
 import {
   deleteTask,
   updateTaskPriority,
   updateTaskStatus,
-} from "../_lib/actions"
+} from "@/actions/task-table-actions"
 
 export function deleteSelectedRows(
-  table: Table<Task>,
-  event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  table: Table<typeof schema.task.$inferSelect>,
+  event?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 ) {
   event?.preventDefault()
   const selectedRows = table.getFilteredSelectedRowModel().rows as {
-    original: Task
+    original: typeof schema.task.$inferSelect
   }[]
 
   noStore()
@@ -36,8 +37,8 @@ export function deleteSelectedRows(
       selectedRows.map(async (row) =>
         deleteTask({
           id: row.original.id,
-        })
-      )
+        }),
+      ),
     ),
     {
       loading: "Deleting...",
@@ -47,13 +48,16 @@ export function deleteSelectedRows(
       error: (err: unknown) => {
         return catchError(err)
       },
-    }
+    },
   )
 }
 
-export function updateTasksStatus(table: Table<Task>, status: string) {
+export function updateTasksStatus(
+  table: Table<typeof schema.task.$inferSelect>,
+  status: string,
+) {
   const selectedRows = table.getFilteredSelectedRowModel().rows as unknown as {
-    original: Task
+    original: typeof schema.task.$inferSelect
   }[]
 
   noStore()
@@ -62,9 +66,9 @@ export function updateTasksStatus(table: Table<Task>, status: string) {
       selectedRows.map(async (row) =>
         updateTaskStatus({
           id: row.original.id,
-          status: status as Task["status"],
-        })
-      )
+          status: status as TaskStatus,
+        }),
+      ),
     ),
     {
       loading: "Updating...",
@@ -74,13 +78,16 @@ export function updateTasksStatus(table: Table<Task>, status: string) {
       error: (err: unknown) => {
         return catchError(err)
       },
-    }
+    },
   )
 }
 
-export function updateTasksPriority(table: Table<Task>, priority: string) {
+export function updateTasksPriority(
+  table: Table<typeof schema.task.$inferSelect>,
+  priority: string,
+) {
   const selectedRows = table.getFilteredSelectedRowModel().rows as unknown as {
-    original: Task
+    original: typeof schema.task.$inferSelect
   }[]
 
   noStore()
@@ -89,9 +96,9 @@ export function updateTasksPriority(table: Table<Task>, priority: string) {
       selectedRows.map(async (row) =>
         updateTaskPriority({
           id: row.original.id,
-          priority: priority as Task["priority"],
-        })
-      )
+          priority: priority as TaskPriority,
+        }),
+      ),
     ),
     {
       loading: "Updating...",
@@ -101,11 +108,13 @@ export function updateTasksPriority(table: Table<Task>, priority: string) {
       error: (err: unknown) => {
         return catchError(err)
       },
-    }
+    },
   )
 }
 
-export function TasksTableFloatingBarContent(table: Table<Task>) {
+export function TasksTableFloatingBarContent(
+  table: Table<typeof schema.task.$inferSelect>,
+) {
   return (
     <div className="justify-between gap-2 align-middle">
       <Select onValueChange={(value) => updateTasksStatus(table, value)}>
@@ -117,12 +126,12 @@ export function TasksTableFloatingBarContent(table: Table<Task>) {
             size="icon"
             className="size-7 data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
           >
-            <CheckCircledIcon className="size-4" aria-hidden="true" />
+            <CheckCircle2Icon className="size-4" aria-hidden="true" />
           </Button>
         </SelectTrigger>
         <SelectContent align="center">
           <SelectGroup>
-            {tasks.status.enumValues.map((status) => (
+            {schema.task.status.enumValues.map((status) => (
               <SelectItem key={status} value={status} className="capitalize">
                 {status}
               </SelectItem>
@@ -143,7 +152,7 @@ export function TasksTableFloatingBarContent(table: Table<Task>) {
         </SelectTrigger>
         <SelectContent align="center">
           <SelectGroup>
-            {tasks.priority.enumValues.map((priority) => (
+            {schema.task.priority.enumValues.map((priority) => (
               <SelectItem
                 key={priority}
                 value={priority}

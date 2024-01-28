@@ -2,9 +2,9 @@ import type { Table } from "@tanstack/react-table"
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from "@radix-ui/react-icons"
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+} from "lucide-react"
 
 import { Button } from "../ui/button"
 import {
@@ -63,7 +63,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <DoubleArrowLeftIcon className="size-4" aria-hidden="true" />
+            <ChevronLeftIcon className="size-4" aria-hidden="true" />
           </Button>
           <Button
             aria-label="Go to previous page"
@@ -90,7 +90,7 @@ export function DataTablePagination<TData>({
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <DoubleArrowRightIcon className="size-4" aria-hidden="true" />
+            <ChevronsRightIcon className="size-4" aria-hidden="true" />
           </Button>
         </div>
       </div>

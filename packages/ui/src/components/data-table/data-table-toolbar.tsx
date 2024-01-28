@@ -3,7 +3,7 @@
 import type { Table } from "@tanstack/react-table"
 import * as React from "react"
 import Link from "next/link"
-import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons"
+import { PlusCircleIcon, TrashIcon, XIcon } from "lucide-react"
 
 import type {
   DataTableFilterableColumn,
@@ -77,7 +77,7 @@ export function DataTableToolbar<TData>({
             onClick={() => table.resetColumnFilters()}
           >
             Reset
-            <Cross2Icon className="ml-2 size-4" aria-hidden="true" />
+            <XIcon className="ml-2 size-4" aria-hidden="true" />
           </Button>
         )}
       </div>
@@ -110,7 +110,7 @@ export function DataTableToolbar<TData>({
                 }),
               )}
             >
-              <PlusCircledIcon className="mr-2 size-4" aria-hidden="true" />
+              <PlusCircleIcon className="mr-2 size-4" aria-hidden="true" />
               New
             </div>
           </Link>

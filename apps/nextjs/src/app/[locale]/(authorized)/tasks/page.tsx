@@ -6,6 +6,7 @@ import { DataTableSkeleton } from "@acme/ui/data-table/skeleton"
 import { Separator } from "@acme/ui/ui/separator"
 
 import { api } from "@/trpc/server"
+import { TasksTable } from "./_components/tasks-table"
 
 export default async function TasksPage() {
   const session = await auth()
@@ -14,7 +15,7 @@ export default async function TasksPage() {
     redirect("/auth")
   }
 
-  const tasks = api.task.all()
+  const tasks = api.task.all({})
 
   return (
     <div className="space-y-6 py-16">

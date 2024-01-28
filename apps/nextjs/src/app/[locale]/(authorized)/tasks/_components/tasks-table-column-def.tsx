@@ -1,28 +1,27 @@
 "use client"
 
-import { tasks, type Task } from "@/db/schema"
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn,
-} from "@/types"
+import type { ColumnDef } from "@tanstack/react-table"
 import {
   ArrowDownIcon,
   ArrowRightIcon,
   ArrowUpIcon,
-  CheckCircledIcon,
+  CheckCircle2Icon,
   CircleIcon,
-  CrossCircledIcon,
-  DotsHorizontalIcon,
-  QuestionMarkCircledIcon,
-  StopwatchIcon,
-} from "@radix-ui/react-icons"
-import { type ColumnDef } from "@tanstack/react-table"
-import { toast } from "sonner"
+  HelpCircleIcon,
+  MoreHorizontalIcon,
+  TimerIcon,
+  XCircleIcon,
+} from "lucide-react"
 
-import { catchError } from "@/lib/catch-error"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import type {
+  DataTableFilterableColumn,
+  DataTableSearchableColumn,
+} from "@acme/ui/data-table"
+import { schema } from "@acme/db"
+import { DataTableColumnHeader } from "@acme/ui/data-table/column-header"
+import { Badge } from "@acme/ui/ui/badge"
+import { Button } from "@acme/ui/ui/button"
+import { Checkbox } from "@acme/ui/ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,15 +34,13 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header"
-
-import { deleteTask, updateTaskLabel } from "../_lib/actions"
+} from "@acme/ui/ui/dropdown-menu"
+import { toast } from "@acme/ui/ui/toast"
 
 export function fetchTasksTableColumnDefs(
   isPending: boolean,
-  startTransition: React.TransitionStartFunction
-): ColumnDef<Task, unknown>[] {
+  startTransition: React.TransitionStartFunction,
+): ColumnDef<typeof schema.task.$inferSelect, unknown>[] {
   return [
     {
       id: "select",
@@ -85,8 +82,8 @@ export function fetchTasksTableColumnDefs(
         <DataTableColumnHeader column={column} title="Title" />
       ),
       cell: ({ row }) => {
-        const label = tasks.label.enumValues.find(
-          (label) => label === row.original.label
+        const label = schema.task.label.enumValues.find(
+          (label) => label === row.original.label,
         )
 
         return (
@@ -105,8 +102,8 @@ export function fetchTasksTableColumnDefs(
         <DataTableColumnHeader column={column} title="Status" />
       ),
       cell: ({ row }) => {
-        const status = tasks.status.enumValues.find(
-          (status) => status === row.original.status
+        const status = schema.task.status.enumValues.find(
+          (status) => status === row.original.status,
         )
 
         if (!status) return null
@@ -114,22 +111,22 @@ export function fetchTasksTableColumnDefs(
         return (
           <div className="flex w-[100px] items-center">
             {status === "canceled" ? (
-              <CrossCircledIcon
+              <XCircleIcon
                 className="mr-2 size-4 text-muted-foreground"
                 aria-hidden="true"
               />
             ) : status === "done" ? (
-              <CheckCircledIcon
+              <CheckCircle2Icon
                 className="mr-2 size-4 text-muted-foreground"
                 aria-hidden="true"
               />
             ) : status === "in-progress" ? (
-              <StopwatchIcon
+              <TimerIcon
                 className="mr-2 size-4 text-muted-foreground"
                 aria-hidden="true"
               />
             ) : status === "todo" ? (
-              <QuestionMarkCircledIcon
+              <HelpCircleIcon
                 className="mr-2 size-4 text-muted-foreground"
                 aria-hidden="true"
               />
@@ -153,8 +150,8 @@ export function fetchTasksTableColumnDefs(
         <DataTableColumnHeader column={column} title="Priority" />
       ),
       cell: ({ row }) => {
-        const priority = tasks.priority.enumValues.find(
-          (priority) => priority === row.original.priority
+        const priority = schema.task.priority.enumValues.find(
+          (priority) => priority === row.original.priority,
         )
 
         if (!priority) {
@@ -202,7 +199,7 @@ export function fetchTasksTableColumnDefs(
               variant="ghost"
               className="flex size-8 p-0 data-[state=open]:bg-muted"
             >
-              <DotsHorizontalIcon className="size-4" aria-hidden="true" />
+              <MoreHorizontalIcon className="size-4" aria-hidden="true" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-[160px]">
@@ -220,7 +217,7 @@ export function fetchTasksTableColumnDefs(
                     })
                   }}
                 >
-                  {tasks.label.enumValues.map((label) => (
+                  {schema.task.label.enumValues.map((label) => (
                     <DropdownMenuRadioItem
                       key={label}
                       value={label}
@@ -247,7 +244,7 @@ export function fetchTasksTableColumnDefs(
                       loading: "Deleting...",
                       success: () => "Task deleted successfully.",
                       error: (err: unknown) => catchError(err),
-                    }
+                    },
                   )
                 })
               }}
@@ -262,11 +259,13 @@ export function fetchTasksTableColumnDefs(
   ]
 }
 
-export const filterableColumns: DataTableFilterableColumn<Task>[] = [
+export const filterableColumns: DataTableFilterableColumn<
+  typeof schema.task.$inferSelect
+>[] = [
   {
     id: "status",
     title: "Status",
-    options: tasks.status.enumValues.map((status) => ({
+    options: schema.task.status.enumValues.map((status) => ({
       label: status[0]?.toUpperCase() + status.slice(1),
       value: status,
     })),
@@ -274,14 +273,16 @@ export const filterableColumns: DataTableFilterableColumn<Task>[] = [
   {
     id: "priority",
     title: "Priority",
-    options: tasks.priority.enumValues.map((priority) => ({
+    options: schema.task.priority.enumValues.map((priority) => ({
       label: priority[0]?.toUpperCase() + priority.slice(1),
       value: priority,
     })),
   },
 ]
 
-export const searchableColumns: DataTableSearchableColumn<Task>[] = [
+export const searchableColumns: DataTableSearchableColumn<
+  typeof schema.task.$inferSelect
+>[] = [
   {
     id: "title",
     title: "titles",

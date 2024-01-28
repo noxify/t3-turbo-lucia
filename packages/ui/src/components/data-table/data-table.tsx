@@ -1,5 +1,5 @@
 import type { ColumnDef, Table as TanstackTable } from "@tanstack/react-table"
-import * as React from "react"
+import type { ComponentType, MouseEventHandler, ReactNode } from "react"
 import { flexRender } from "@tanstack/react-table"
 
 import {
@@ -19,7 +19,7 @@ export type SearchParams = Record<string, string | string[] | undefined>
 export interface Option {
   label: string
   value: string
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: ComponentType<{ className?: string }>
 }
 
 export interface DataTableFilterOption<TData> {
@@ -74,18 +74,18 @@ interface DataTableProps<TData, TValue> {
    * The content to render in the floating bar on row selection, at the bottom of the table. When null, the floating bar is not rendered.
    * The datTable instance is passed as a prop to the floating bar content.
    * @default null
-   * @type React.ReactNode | null
+   * @type ReactNode | null
    * @example floatingBarContent={TasksTableFloatingBarContent(dataTable)}
    */
-  floatingBarContent?: React.ReactNode | null
+  floatingBarContent?: ReactNode | null
 
   /**
    * The action to delete rows
    * @default undefined
-   * @type React.MouseEventHandler<HTMLButtonElement> | undefined
+   * @type MouseEventHandler<HTMLButtonElement> | undefined
    * @example deleteRowsAction={(event) => deleteSelectedRows(dataTable, event)}
    */
-  deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
+  deleteRowsAction?: MouseEventHandler<HTMLButtonElement>
 }
 
 export function DataTable<TData, TValue>({

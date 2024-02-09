@@ -17,17 +17,17 @@
   },
   "dependencies": {
     "drizzle-orm": "0.29.3",
-    "mysql2": "3.9.0",
-    "nanoid": "5.0.4"
+    "mysql2": "3.9.1",
+    "nanoid": "5.0.5"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "dotenv-cli": "7.3.0",
-    "drizzle-kit": "0.20.13",
+    "drizzle-kit": "0.20.14",
     "eslint": "8.56.0",
-    "prettier": "3.2.4",
+    "prettier": "3.2.5",
     "typescript": "5.3.3"
   },
   "eslintConfig": {

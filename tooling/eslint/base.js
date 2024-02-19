@@ -4,8 +4,7 @@ const config = {
     "turbo",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
-    "prettier",
+    "plugin:@typescript-eslint/stylistic-type-checked"
   ],
   env: {
     es2022: true,

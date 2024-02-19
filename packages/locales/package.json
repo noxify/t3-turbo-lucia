@@ -20,16 +20,16 @@
     "generate": "node --import tsx/esm ./src/generate.ts"
   },
   "dependencies": {
-    "next-international": "1.2.3",
+    "next-international": "1.2.4",
     "react": "18.2.0"
   },
   "devDependencies": {
-    "tsx": "4.7.0",
     "@acme/eslint-config": "workspace:*",
-    "eslint": "8.56.0",
-    "typescript": "5.3.3",
     "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*"
+    "@acme/tsconfig": "workspace:*",
+    "eslint": "8.56.0",
+    "tsx": "4.7.1",
+    "typescript": "5.3.3"
   },
   "eslintConfig": {
     "root": true,

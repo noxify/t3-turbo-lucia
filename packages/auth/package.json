@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@acme/db": "workspace:*",
-    "@lucia-auth/adapter-drizzle": "1.0.1",
+    "@lucia-auth/adapter-drizzle": "1.0.2",
     "@t3-oss/env-nextjs": "0.9.2",
-    "arctic": "1.1.4",
+    "arctic": "1.2.0",
     "lucia": "3.0.1",
     "next": "14.1.0",
-    "oslo": "1.1.0",
+    "oslo": "1.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "zod": "3.22.4"
@@ -30,8 +30,8 @@
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "@octokit/types": "12.4.0",
-    "discord-api-types": "0.37.69",
+    "@octokit/types": "12.5.0",
+    "discord-api-types": "0.37.70",
     "eslint": "8.56.0",
     "prettier": "3.2.5",
     "typescript": "5.3.3"

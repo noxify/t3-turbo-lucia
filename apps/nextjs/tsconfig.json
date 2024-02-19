@@ -3,17 +3,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "plugins": [{ "name": "next" }],
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
   },
   "include": [
     ".",
     ".next/types/**/*.ts",
     "../../packages/locales/client.ts",
     "../../packages/locales/provider.tsx",
-    "../../packages/locales/server.ts",
+    "../../packages/locales/server.ts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }

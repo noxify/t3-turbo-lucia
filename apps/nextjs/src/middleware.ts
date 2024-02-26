@@ -1,16 +1,8 @@
-import type { NextRequest } from "next/server"
+import { handleAuth } from "@/middlewares/auth"
+import { composeMiddleware } from "@/middlewares/compose-middleware"
+import { handleI18n } from "@/middlewares/i18n"
 
-import { createI18nMiddleware } from "@acme/locales"
-
-const I18nMiddleware = createI18nMiddleware({
-  locales: ["en", "de"],
-  defaultLocale: "en",
-  urlMappingStrategy: "rewrite",
-})
-
-export function middleware(request: NextRequest) {
-  return I18nMiddleware(request)
-}
+export default composeMiddleware([handleAuth, handleI18n])
 
 export const config = {
   matcher: ["/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)"],

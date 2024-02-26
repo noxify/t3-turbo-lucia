@@ -1,7 +1,4 @@
 import { Suspense } from "react"
-import { redirect } from "next/navigation"
-
-import { auth } from "@acme/auth"
 
 import {
   UpdateProfileForm,
@@ -10,12 +7,6 @@ import {
 import { api } from "@/trpc/server"
 
 export default async function UsersSettingsPage() {
-  const session = await auth()
-
-  if (!session.user) {
-    redirect("/auth")
-  }
-
   const currentUser = api.user.profile()
 
   return (

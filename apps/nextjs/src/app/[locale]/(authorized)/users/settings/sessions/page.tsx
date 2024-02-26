@@ -1,5 +1,4 @@
 import { Suspense } from "react"
-import { redirect } from "next/navigation"
 
 import { auth } from "@acme/auth"
 
@@ -11,10 +10,6 @@ import { api } from "@/trpc/server"
 
 export default async function SessionsPage() {
   const session = await auth()
-
-  if (!session.user) {
-    redirect("/auth")
-  }
 
   const sessions = api.user.sessions()
 
@@ -29,7 +24,7 @@ export default async function SessionsPage() {
             </div>
           }
         >
-          <SessionList sessions={sessions} sessionId={session.session.id} />
+          <SessionList sessions={sessions} sessionId={session.session!.id} />
         </Suspense>
       </div>
     </>

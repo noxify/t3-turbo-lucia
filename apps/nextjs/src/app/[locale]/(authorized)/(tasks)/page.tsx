@@ -1,20 +1,9 @@
 import { Suspense } from "react"
-import { redirect } from "next/navigation"
-
-import { auth } from "@acme/auth"
 
 import { CreatePostForm, PostCardSkeleton, PostList } from "@/components/posts"
 import { api } from "@/trpc/server"
 
 export default async function HomePage() {
-  //await new Promise((resolve) => setTimeout(resolve, 5000))
-
-  const session = await auth()
-
-  if (!session.user) {
-    redirect("/auth")
-  }
-
   const posts = api.post.all()
 
   return (

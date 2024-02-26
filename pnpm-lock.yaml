@@ -218,6 +218,9 @@ importers:
       '@octokit/types':
         specifier: 12.6.0
         version: 12.6.0
+      '@types/react':
+        specifier: 18.2.58
+        version: 18.2.58
       discord-api-types:
         specifier: 0.37.70
         version: 0.37.70

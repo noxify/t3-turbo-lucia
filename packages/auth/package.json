@@ -27,12 +27,12 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "@types/react": "18.2.58",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@octokit/types": "12.6.0",
-    "discord-api-types": "0.37.70",
+    "@types/react": "18.2.58",
+    "discord-api-types": "0.37.71",
     "eslint": "8.57.0",
     "prettier": "3.2.5",
     "typescript": "5.3.3"

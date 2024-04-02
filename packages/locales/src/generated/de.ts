@@ -1,5 +1,5 @@
 // prettier-ignore
-  export default {
+export default {
   "auth": {
     "signout": "Abmelden",
     "headline": "Anmelden mit",

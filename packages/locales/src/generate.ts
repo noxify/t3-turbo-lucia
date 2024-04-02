@@ -12,7 +12,7 @@ const sources = {
 type SourcesType = keyof typeof sources
 
 function generateTranslationFile(source: SourcesType) {
-  const types = `// prettier-ignore\nexport default ${JSON.stringify(sources[source], null, 2)} as const`
+  const types = `export default ${JSON.stringify(sources[source], null, 2)} as const`
 
   const generatedPath = path.resolve("src/generated")
 

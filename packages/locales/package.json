@@ -14,7 +14,7 @@
   },
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "format": "prettier --check . '!src/generated/**' --ignore-path ../../.gitignore",
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix",
     "type-check": "tsc --noEmit",

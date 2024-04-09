@@ -13,6 +13,7 @@
     "./lang": "./src/lang.ts"
   },
   "scripts": {
+    "dev": "nodemon --watch ./src/lang --ext json --exec \"pnpm run generate\"",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . '!src/generated/**' --ignore-path ../../.gitignore",
     "lint": "eslint .",
@@ -29,6 +30,7 @@
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "eslint": "8.57.0",
+    "nodemon": "^3.1.0",
     "tsx": "4.7.1",
     "typescript": "5.3.3"
   },

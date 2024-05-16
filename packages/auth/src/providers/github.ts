@@ -2,9 +2,10 @@ import type { Endpoints } from "@octokit/types"
 import { GitHub } from "arctic"
 import { generateId } from "lucia"
 
-import { db, schema } from "@acme/db"
+import { db } from "@acme/db/client"
+import { Account, User } from "@acme/db/schema"
 
-import { env } from "../../env.mjs"
+import { env } from "../../env"
 
 const github = new GitHub(env.AUTH_GITHUB_ID, env.AUTH_GITHUB_SECRET)
 
@@ -26,7 +27,7 @@ export const handleCallback = async (code: string) => {
   const githubUser =
     (await response.json()) as Endpoints["GET /user"]["response"]["data"]
 
-  const existingAccount = await db.query.accounts.findFirst({
+  const existingAccount = await db.query.Account.findFirst({
     columns: {
       userId: true,
     },
@@ -64,12 +65,15 @@ export const handleCallback = async (code: string) => {
         (await res.json()) as Endpoints["GET /user/emails"]["response"]["data"]
 
       const primaryEmail = emails.find((ele) => ele.primary)
+
+      // use first email from the /users/emails endpoint in case we can't fetch the primary email
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       userEmail = primaryEmail?.email ?? emails[0]!.email
     }
   }
 
   await db.transaction(async (tx) => {
-    const existingUser = await tx.query.users.findFirst({
+    const existingUser = await tx.query.User.findFirst({
       columns: {
         id: true,
       },
@@ -79,7 +83,7 @@ export const handleCallback = async (code: string) => {
     })
 
     if (!existingUser) {
-      await tx.insert(schema.users).values({
+      await tx.insert(User).values({
         id: userId,
         name: githubUser.login,
         email: userEmail,
@@ -88,7 +92,7 @@ export const handleCallback = async (code: string) => {
       userId = existingUser.id
     }
 
-    await tx.insert(schema.accounts).values({
+    await tx.insert(Account).values({
       providerId: "github",
       providerUserId: githubUser.id.toString(),
       userId,

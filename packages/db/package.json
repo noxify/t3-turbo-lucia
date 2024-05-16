@@ -4,37 +4,50 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "default": "./src/client.ts"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "default": "./src/schema.ts"
+    },
+    "./env": "./env.ts"
   },
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "lint": "eslint .",
-    "push": "drizzle-kit push:mysql",
-    "studio": "drizzle-kit studio",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint",
+    "migrate": "pnpm with-env drizzle-kit migrate",
+    "generate": "pnpm with-env drizzle-kit generate",
+    "push": "pnpm with-env drizzle-kit push",
+    "studio": "pnpm with-env drizzle-kit studio",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "drizzle-orm": "0.29.4",
-    "mysql2": "3.9.1",
-    "nanoid": "5.0.6"
+    "@t3-oss/env-core": "0.10.1",
+    "drizzle-orm": "0.30.10",
+    "drizzle-zod": "0.5.1",
+    "postgres": "3.4.4",
+    "zod": "3.23.8"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "dotenv-cli": "7.3.0",
-    "drizzle-kit": "0.20.14",
-    "eslint": "8.57.0",
+    "dotenv-cli": "7.4.2",
+    "drizzle-kit": "0.21.2",
+    "eslint": "9.2.0",
     "prettier": "3.2.5",
-    "typescript": "5.3.3"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@acme/eslint-config/base"
-    ]
+    "typescript": "5.4.5"
   },
   "prettier": "@acme/prettier-config"
 }

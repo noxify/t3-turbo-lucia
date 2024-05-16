@@ -1,8 +1,9 @@
 {
-  "extends": "@acme/tsconfig/base.json",
+  "extends": "@acme/tsconfig/internal-package.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "outDir": "dist",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
   },
-  "include": ["src", "drizzle.config.ts"],
-  "exclude": ["node_modules"],
+  "include": ["src", "*.ts"],
+  "exclude": ["node_modules"]
 }

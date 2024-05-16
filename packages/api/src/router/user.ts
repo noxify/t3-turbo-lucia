@@ -1,32 +1,33 @@
 import { TRPCError } from "@trpc/server"
+import { z } from "zod"
 
 import { lucia } from "@acme/auth"
-import { eq, schema } from "@acme/db"
-import { DeleteSessionSchema, UpdateProfileSchema } from "@acme/validators"
+import { eq } from "@acme/db"
+import { UpdateUserSchema, User } from "@acme/db/schema"
 
 import { createTRPCRouter, protectedProcedure } from "../trpc"
 
 export const userRouter = createTRPCRouter({
   profile: protectedProcedure.query(({ ctx }) => {
-    return ctx.db.query.users.findFirst({
-      where: eq(schema.users.id, ctx.session.user.id),
+    return ctx.db.query.User.findFirst({
+      where: eq(User.id, ctx.session.user.id),
     })
   }),
   updateProfile: protectedProcedure
-    .input(UpdateProfileSchema)
+    .input(UpdateUserSchema)
     .mutation(({ ctx, input }) => {
       return ctx.db
-        .update(schema.users)
+        .update(User)
         .set(input)
-        .where(eq(schema.users.id, ctx.session.user.id))
+        .where(eq(User.id, ctx.session.user.id))
     }),
 
   sessions: protectedProcedure.query(async ({ ctx }) => {
-    return lucia.getUserSessions(ctx.session.user?.id)
+    return lucia.getUserSessions(ctx.session.user.id)
   }),
 
   deleteSession: protectedProcedure
-    .input(DeleteSessionSchema)
+    .input(z.object({ sessionId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const userSessions = await lucia.getUserSessions(ctx.session.user.id)
 

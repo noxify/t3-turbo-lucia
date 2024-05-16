@@ -1,19 +1,16 @@
 {
   "extends": "@acme/tsconfig/base.json",
   "compilerOptions": {
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "~/*": ["./src/*"]
     },
     "plugins": [{ "name": "next" }],
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "module": "esnext"
   },
-  "include": [
-    ".",
-    ".next/types/**/*.ts",
-    "../../packages/locales/client.ts",
-    "../../packages/locales/provider.tsx",
-    "../../packages/locales/server.ts",
-  ],
-  "exclude": ["node_modules"],
+  "include": [".", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

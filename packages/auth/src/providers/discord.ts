@@ -3,9 +3,10 @@ import { Discord } from "arctic"
 import { OAuth2Scopes } from "discord-api-types/v10"
 import { generateId } from "lucia"
 
-import { db, schema } from "@acme/db"
+import { db } from "@acme/db/client"
+import { Account, User } from "@acme/db/schema"
 
-import { env } from "../../env.mjs"
+import { env } from "../../env"
 
 const discord = new Discord(
   env.AUTH_DISCORD_ID,
@@ -31,7 +32,7 @@ export const handleCallback = async (code: string) => {
   })
   const discordUser = (await response.json()) as DiscordUser
 
-  const existingAccount = await db.query.accounts.findFirst({
+  const existingAccount = await db.query.Account.findFirst({
     columns: {
       userId: true,
     },
@@ -50,10 +51,11 @@ export const handleCallback = async (code: string) => {
   }
 
   let userId = generateId(15)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const userEmail = discordUser.email!
 
   await db.transaction(async (tx) => {
-    const existingUser = await tx.query.users.findFirst({
+    const existingUser = await tx.query.User.findFirst({
       columns: {
         id: true,
       },
@@ -63,7 +65,7 @@ export const handleCallback = async (code: string) => {
     })
 
     if (!existingUser) {
-      await tx.insert(schema.users).values({
+      await tx.insert(User).values({
         id: userId,
         name: discordUser.username,
         email: userEmail,
@@ -72,7 +74,7 @@ export const handleCallback = async (code: string) => {
       userId = existingUser.id
     }
 
-    await tx.insert(schema.accounts).values({
+    await tx.insert(Account).values({
       providerId: "discord",
       providerUserId: discordUser.id,
       userId,

@@ -2,13 +2,13 @@ export default {
   "auth": {
     "signout": "Abmelden",
     "headline": "Anmelden mit",
-    "page_title": "Anmelden"
+    "page_title": "Anmelden",
+    "title": "Anmelden"
   },
   "welcome": "Hallo <span class=\"font-medium\">{name}</span>!",
   "common": {
     "delete": "Löschen",
-    "create": "Erstellen",
-    "settings": "Einstellungen"
+    "create": "Erstellen"
   },
   "error": {
     "not_authorized": "Du bist nicht angemeldet."

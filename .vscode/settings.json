@@ -1,8 +1,11 @@
 {
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+  "eslint.useFlatConfig": true,
   "eslint.workingDirectories": [
     { "pattern": "apps/*/" },
     { "pattern": "packages/*/" },
@@ -12,7 +15,7 @@
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "tailwindCSS.experimental.configFile": "./tooling/tailwind/index.ts",
+  "tailwindCSS.experimental.configFile": "./tooling/tailwind/web.ts",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
     "next/router.d.ts",
@@ -22,7 +25,8 @@
   "i18n-ally.localesPaths": ["packages/locales/src/lang"],
   "i18n-ally.editor.preferEditor": true,
   "i18n-ally.pathMatcher": "{locale}.json",
-  "i18n-ally.enabledFrameworks": ["next-international"],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.extract.autoDetect": true
+  "i18n-ally.enabledFrameworks": ["next-international"],
+  "i18n-ally.extract.autoDetect": true,
+  "i18n-ally.fullReloadOnChanged": true
 }

@@ -7,14 +7,14 @@ import { auth } from "@acme/auth"
  * Configure basic CORS headers
  * You should extend this to match your needs
  */
-function setCorsHeaders(res: Response) {
+const setCorsHeaders = (res: Response) => {
   res.headers.set("Access-Control-Allow-Origin", "*")
   res.headers.set("Access-Control-Request-Method", "*")
   res.headers.set("Access-Control-Allow-Methods", "OPTIONS, GET, POST")
   res.headers.set("Access-Control-Allow-Headers", "*")
 }
 
-export function OPTIONS() {
+export const OPTIONS = () => {
   const response = new Response(null, {
     status: 204,
   })
@@ -35,7 +35,11 @@ const handler = async (req: Request) => {
         headers: req.headers,
       }),
     onError({ error, path }) {
-      console.error(`>>> tRPC Error on '${path}'`, error)
+      console.error(`>>> tRPC Error on '${path}'`, {
+        code: error.code,
+        message: error.message,
+        name: error.name,
+      })
     },
   })
 

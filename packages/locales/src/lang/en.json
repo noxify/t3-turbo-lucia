@@ -8,8 +8,7 @@
   "welcome": "Hello <span class=\"font-medium\">{name}</span>!",
   "common": {
     "delete": "Delete",
-    "create": "Create",
-    "settings": "Settings"
+    "create": "Create"
   },
   "error": {
     "not_authorized": "You're not logged in."

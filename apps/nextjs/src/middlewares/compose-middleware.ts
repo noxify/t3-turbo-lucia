@@ -2,7 +2,7 @@
 import type { NextFetchEvent, NextRequest } from "next/server"
 import { NextResponse } from "next/server"
 
-import { mergeHeaders } from "@/middlewares/merge-headers"
+import { mergeHeaders } from "~/middlewares/merge-headers"
 
 type GoNextMiddleware = () => "continue"
 
@@ -66,6 +66,7 @@ export function composeMiddleware(handlers: MiddlewareFunction[] = []) {
 
     // more than one middleware returned a response
     // merge headers into a final response and return it
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const finalResponse = allResponses[allResponses.length - 1]!
     const finalHeaders: Headers = mergeHeaders(
       ...allResponses.map((r) => r.headers),

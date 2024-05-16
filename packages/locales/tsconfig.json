@@ -1,12 +1,10 @@
 {
   "extends": "@acme/tsconfig/base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-    },
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "lib": ["dom", "dom.iterable", "ES2022"],
+    "jsx": "preserve",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
-  "exclude": ["node_modules"],
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

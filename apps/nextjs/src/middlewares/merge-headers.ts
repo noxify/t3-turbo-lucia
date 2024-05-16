@@ -18,7 +18,7 @@ export function mergeHeaders(...sources: HeadersInit[]) {
     const headers: Headers = new Headers(source)
 
     for (const [key, value] of Array.from(headers.entries())) {
-      if (value === undefined || value === "undefined") {
+      if (value === "undefined") {
         delete result[key]
       } else {
         result[key] = value

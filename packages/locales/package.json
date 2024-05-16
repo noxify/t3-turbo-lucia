@@ -1,43 +1,40 @@
 {
   "name": "@acme/locales",
-  "version": "0.0.0",
+  "private": true,
+  "version": "0.1.0",
   "type": "module",
-  "main": "./index.ts",
-  "types": "./index.ts",
-  "license": "MIT",
   "exports": {
     ".": "./src/index.ts",
     "./server": "./src/server.ts",
     "./client": "./src/client.ts",
     "./provider": "./src/provider.tsx",
-    "./lang": "./src/lang.ts"
+    "./lang/*": "./src/lang/*.ts"
   },
+  "license": "MIT",
   "scripts": {
+    "dev": "nodemon --watch ./src/lang --ext json --exec \"pnpm run generate\"",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --check . '!src/generated/**' --ignore-path ../../.gitignore",
-    "lint": "eslint .",
-    "lint:fix": "pnpm lint --fix",
-    "type-check": "tsc --noEmit",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "generate": "node --import tsx/esm ./src/generate.ts"
   },
   "dependencies": {
     "next-international": "1.2.4",
-    "react": "18.2.0"
+    "react": "18.3.1"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
+    "@acme/tailwind-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
-    "eslint": "8.57.0",
-    "tsx": "4.7.1",
-    "typescript": "5.3.3"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@acme/eslint-config/base",
-      "@acme/eslint-config/react"
-    ]
+    "@types/react": "18.3.2",
+    "eslint": "9.2.0",
+    "nodemon": "3.1.0",
+    "prettier": "3.2.5",
+    "react": "18.3.1",
+    "tsx": "4.10.3",
+    "typescript": "5.4.5"
   },
   "prettier": "@acme/prettier-config"
 }

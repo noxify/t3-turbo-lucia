@@ -4,6 +4,8 @@ import { generateState } from "arctic"
 import type { Providers } from "@acme/auth"
 import { providers } from "@acme/auth"
 
+import { env } from "~/env"
+
 export async function GET(
   request: Request,
   {
@@ -24,7 +26,7 @@ export async function GET(
   const url = await currentProvider.getAuthorizationUrl(state)
   cookies().set(`oauth_state`, state, {
     path: "/",
-    secure: process.env.NODE_ENV === "production",
+    secure: env.NODE_ENV === "production",
     httpOnly: true,
     maxAge: 60 * 10,
     sameSite: "lax",

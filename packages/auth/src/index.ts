@@ -1,20 +1,22 @@
 import type { Session, User } from "lucia"
 import { cache } from "react"
 import { cookies } from "next/headers"
-import { DrizzleMySQLAdapter } from "@lucia-auth/adapter-drizzle"
+import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle"
 import { Lucia } from "lucia"
 
-import { db, schema } from "@acme/db"
+import { db } from "@acme/db/client"
+import { Session as SessionTable, User as UserTable } from "@acme/db/schema"
 
+import { env } from "../env"
 import * as discordProvider from "./providers/discord"
 import * as githubProvider from "./providers/github"
 
-const adapter = new DrizzleMySQLAdapter(db, schema.sessions, schema.users)
+const adapter = new DrizzlePostgreSQLAdapter(db, SessionTable, UserTable)
 
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
     attributes: {
-      secure: process.env.NODE_ENV === "production",
+      secure: env.NODE_ENV === "production",
     },
   },
 
@@ -45,7 +47,7 @@ export const auth = cache(async (): Promise<AuthResponse> => {
   const result = await lucia.validateSession(sessionId)
   // next.js throws when you attempt to set cookie when rendering page
   try {
-    if (result.session && result.session.fresh) {
+    if (result.session?.fresh) {
       const sessionCookie = lucia.createSessionCookie(result.session.id)
       cookies().set(
         sessionCookie.name,
@@ -82,9 +84,9 @@ export type AuthResponse =
 declare module "lucia" {
   interface Register {
     Lucia: typeof lucia
-    DatabaseUserAttributes: Omit<typeof schema.users.$inferSelect, "id">
+    DatabaseUserAttributes: Omit<typeof UserTable.$inferSelect, "id">
     DatabaseSessionAttributes: Pick<
-      typeof schema.sessions.$inferSelect,
+      typeof SessionTable.$inferSelect,
       "ipAddress" | "userAgent"
     >
   }

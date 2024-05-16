@@ -21,7 +21,7 @@ export async function logoutAction(): Promise<ActionResult> {
     sessionCookie.value,
     sessionCookie.attributes,
   )
-  return redirect("/auth")
+  return redirect("/")
 }
 
 interface ActionResult {

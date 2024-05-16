@@ -4,12 +4,12 @@
 
 ## Features
 
-* Monorepo via turborepo
-* NextJS 14.1
-* TRPC ( with RSC support )
-* Lucia Auth with multi provider support
-* i18n support ( with support for i18n-ally )
-* tailwind with shadcn-ui
+- Monorepo via turborepo
+- NextJS 14
+- TRPC ( with RSC support )
+- Lucia Auth with multi provider support
+- i18n support ( with support for i18n-ally )
+- tailwind with shadcn-ui
 
 ## Installation
 
@@ -38,14 +38,14 @@ packages
   ├─ auth
   |   └─ Authentication using lucia-auth@v3
   ├─ db
-  |   └─ Typesafe db calls using Drizzle & mysql
+  |   └─ Typesafe db calls using Drizzle & postgres
   ├─ locales
   |   └─ type-safe internationalization
   ├─ validators
   |   └─ shared zod schemas for trpc and forms
   └─ ui
       └─ Start of a UI package for the webapp using shadcn-ui
-  
+
 
 tooling
   ├─ eslint
@@ -64,7 +64,7 @@ tooling
 
 To get it running, follow the steps below.
 
-The db is currently configured for `mysql`.
+The db is currently configured for `postgres`.
 
 Feel free to change it.
 
@@ -85,7 +85,7 @@ pnpm db:push
 pnpm dev
 ```
 
-## i18n 
+## i18n
 
 This packages uses [next-international](https://github.com/quiiBz/next-international) for type-safe translations.
 
@@ -94,6 +94,8 @@ We're using `json` files and generating the `ts` files from them.
 
 Why? Using json files allows us to use the vsc extension [`i18n ally`](https://github.com/lokalise/i18n-ally), which makes it a lot easier to manage the translations.
 
+> Note: If you don't need / use the i18n-ally extension, you could simply import the typescript files directly ( without using the json files).
+> Unfortunately the i18n-ally doesn't support writing `.ts` files.
 
 **Example:**
 
@@ -109,10 +111,11 @@ Visit their [wiki](https://github.com/lokalise/i18n-ally/wiki) to learn more abo
 
 ## Credits / Special thanks
 
-* https://github.com/shadcn-ui
-* https://github.com/juliusmarminge
-* https://github.com/t3-oss 
-* https://github.com/QuiiBz
-* https://github.com/lucia-auth
+- https://github.com/shadcn-ui
+- https://github.com/juliusmarminge
+- https://github.com/dBianchii
+- https://github.com/t3-oss
+- https://github.com/QuiiBz
+- https://github.com/lucia-auth
 
 If you like what you see, feel free to support one or all of them via their sponsoring options ( if available ).

@@ -66,6 +66,7 @@ export async function GET(
         status: 400,
       })
     }
+    console.error(e)
     return new Response(null, {
       status: 500,
     })

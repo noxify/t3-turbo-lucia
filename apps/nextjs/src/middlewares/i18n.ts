@@ -1,6 +1,8 @@
+import type { NextFetchEvent, NextRequest } from "next/server"
+
 import { createI18nMiddleware } from "@acme/locales"
 
-import type { MiddlewareFunction } from "~/middlewares/compose-middleware"
+import type { CustomMiddleware } from "~/middlewares/chain-middleware"
 
 const I18nMiddleware = createI18nMiddleware({
   locales: ["en", "de"],
@@ -8,7 +10,10 @@ const I18nMiddleware = createI18nMiddleware({
   urlMappingStrategy: "rewrite",
 })
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const handleI18n: MiddlewareFunction = async (request) => {
-  return I18nMiddleware(request)
+export function withI18n(middleware: CustomMiddleware) {
+  return async (request: NextRequest, event: NextFetchEvent) => {
+    const response = I18nMiddleware(request)
+
+    return middleware(request, event, response)
+  }
 }

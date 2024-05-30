@@ -1,6 +1,5 @@
-import type { NextFetchEvent, NextRequest } from "next/server"
+import type { NextFetchEvent, NextRequest, NextResponse } from "next/server"
 import { cookies } from "next/headers"
-import { NextResponse } from "next/server"
 
 import type { CustomMiddleware } from "~/middlewares/chain-middleware"
 
@@ -39,7 +38,14 @@ export function withAuth(middleware: CustomMiddleware) {
     }
 
     if (!verifySession.valid) {
-      response = NextResponse.redirect(new URL("/auth", request.nextUrl))
+      /*
+       * since every site has it's own requirements
+       * we do not provide a dedicated auth page
+       *
+       * But here an example how you could redirect the user
+       * in case we weren't able to verify the session
+       */
+      //response = NextResponse.redirect(new URL("/auth", request.nextUrl))
     }
 
     return middleware(request, event, response)

@@ -45,8 +45,6 @@ packages
   |   └─ shared zod schemas for trpc and forms
   └─ ui
       └─ Start of a UI package for the webapp using shadcn-ui
-
-
 tooling
   ├─ eslint
   |   └─ shared, fine-grained, eslint presets
@@ -67,8 +65,6 @@ To get it running, follow the steps below.
 The db is currently configured for `postgres`.
 
 Feel free to change it.
-
-## Quick start
 
 ```bash
 # Install dependencies
@@ -105,6 +101,9 @@ If you save the translation, it will update the `json` files inside `packages/lo
 
 Last step what you have to do is to run `pnpm lang:gen` from your project root to (re-)generate the `ts` files ( which are located in `packages/locales/src/generated` ).
 
+> Note: Thanks to dBianchii, he provided a PR which automates the re-generation 🫡
+> So, while running `pnpm dev` the `generated/[lang].ts` files are (re-)generated after updating the json files automagically.
+
 The vsc extension includes also some other features.
 
 Visit their [wiki](https://github.com/lokalise/i18n-ally/wiki) to learn more about it.
@@ -116,6 +115,7 @@ Visit their [wiki](https://github.com/lokalise/i18n-ally/wiki) to learn more abo
 - https://github.com/dBianchii
 - https://github.com/t3-oss
 - https://github.com/QuiiBz
+- https://github.com/HamedBahram
 - https://github.com/lucia-auth
 
 If you like what you see, feel free to support one or all of them via their sponsoring options ( if available ).

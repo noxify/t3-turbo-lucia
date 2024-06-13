@@ -1,6 +1,8 @@
 "use client"
 
 import { use } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 
 import type { RouterOutputs } from "@acme/api"
 import { CreatePostSchema } from "@acme/db/schema"
@@ -13,18 +15,19 @@ import {
   FormField,
   FormItem,
   FormMessage,
-  useForm,
 } from "@acme/ui/form"
 import { Input } from "@acme/ui/input"
-import { toast } from "@acme/ui/toast"
+import { useToast } from "@acme/ui/use-toast"
 
 import { api } from "~/trpc/react"
 
 export function CreatePostForm() {
   const t = useI18n()
 
+  const { toast } = useToast()
+
   const form = useForm({
-    schema: CreatePostSchema,
+    resolver: zodResolver(CreatePostSchema),
     defaultValues: {
       content: "",
       title: "",
@@ -38,11 +41,13 @@ export function CreatePostForm() {
       await utils.post.invalidate()
     },
     onError: (err) => {
-      toast.error(
-        err.data?.code === "UNAUTHORIZED"
-          ? t("error.not_authorized")
-          : t("posts.create.failed"),
-      )
+      toast({
+        description:
+          err.data?.code === "UNAUTHORIZED"
+            ? t("error.not_authorized")
+            : t("posts.create.failed"),
+        variant: "destructive",
+      })
     },
   })
 
@@ -124,18 +129,20 @@ export function PostCard(props: {
   post: RouterOutputs["post"]["all"][number]
 }) {
   const t = useI18n()
-
+  const { toast } = useToast()
   const utils = api.useUtils()
   const deletePost = api.post.delete.useMutation({
     onSuccess: async () => {
       await utils.post.invalidate()
     },
     onError: (err) => {
-      toast.error(
-        err.data?.code === "UNAUTHORIZED"
-          ? t("error.not_authorized")
-          : t("posts.delete.failed"),
-      )
+      toast({
+        description:
+          err.data?.code === "UNAUTHORIZED"
+            ? t("error.not_authorized")
+            : t("posts.delete.failed"),
+        variant: "destructive",
+      })
     },
   })
 

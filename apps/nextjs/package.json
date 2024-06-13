@@ -29,7 +29,9 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "superjson": "2.2.1",
-    "zod": "3.23.8"
+    "zod": "3.23.8",
+    "react-hook-form": "7.51.5",
+    "@hookform/resolvers": "3.6.0"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",

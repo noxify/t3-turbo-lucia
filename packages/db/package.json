@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@t3-oss/env-core": "0.10.1",
-    "drizzle-orm": "0.30.10",
+    "drizzle-orm": "0.31.2",
     "drizzle-zod": "0.5.1",
     "postgres": "3.4.4",
     "zod": "3.23.8"
@@ -44,9 +44,9 @@
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "dotenv-cli": "7.4.2",
-    "drizzle-kit": "0.21.4",
-    "eslint": "9.3.0",
-    "prettier": "3.2.5",
+    "drizzle-kit": "0.22.7",
+    "eslint": "9.4.0",
+    "prettier": "3.3.2",
     "typescript": "5.4.5"
   },
   "prettier": "@acme/prettier-config"

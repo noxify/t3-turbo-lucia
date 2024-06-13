@@ -12,5 +12,6 @@ export const env = createEnv({
     DB_NAME: z.string().min(1),
   },
   runtimeEnv: process.env,
-  skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION,
+  skipValidation:
+    !!process.env.CI || process.env.npm_lifecycle_event === "lint",
 })

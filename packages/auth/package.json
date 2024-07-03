@@ -23,7 +23,7 @@
     "arctic": "1.9.1",
     "lucia": "3.2.0",
     "next": "14.2.4",
-    "oslo": "1.2.0",
+    "oslo": "1.2.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "zod": "3.23.8"
@@ -33,10 +33,10 @@
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@octokit/types": "13.5.0",
-    "discord-api-types": "0.37.88",
-    "eslint": "9.4.0",
+    "discord-api-types": "0.37.91",
+    "eslint": "9.6.0",
     "prettier": "3.3.2",
-    "typescript": "5.4.5"
+    "typescript": "5.5.3"
   },
   "prettier": "@acme/prettier-config"
 }

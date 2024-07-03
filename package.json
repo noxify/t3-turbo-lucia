@@ -30,11 +30,11 @@
   },
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",
-    "@turbo/gen": "2.0.3",
+    "@turbo/gen": "2.0.6",
     "prettier": "3.3.2",
-    "sherif": "0.8.4",
-    "turbo": "2.0.3",
-    "typescript": "5.4.5"
+    "sherif": "0.9.0",
+    "turbo": "2.0.6",
+    "typescript": "5.5.3"
   },
   "prettier": "@acme/prettier-config"
 }
